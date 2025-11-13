@@ -86,18 +86,6 @@ const MediaSection = () => {
             ))}
           </div>
 
-          <div className="media-row media-row--fast-right">
-            <div className="media-row__mask" aria-hidden="true" />
-            {[0, 1].map((index) => (
-              <div key={`bottom-track-${index}`} className="media-row__track">
-                {bottomLogos.map(({ src, alt }, logoIndex) => (
-                  <figure key={`bottom-${logoIndex}-${index}`} className="media-logo">
-                    <img src={src} alt={alt} className="media-logo__img" loading="lazy" />
-                  </figure>
-                ))}
-              </div>
-            ))}
-          </div>
 
         </div>
       </div>

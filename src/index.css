@@ -230,28 +230,28 @@ All colors MUST be HSL.
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.6rem 1.75rem;
-    border-radius: 999px;
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.08), rgba(15, 23, 42, 0.15));
-    box-shadow: 0 16px 28px rgba(15, 23, 42, 0.12);
+    padding: 0.35rem 1.5rem;
+    border-radius: 0.75rem;
+    background: transparent;
+    box-shadow: none;
     transition: transform 220ms ease, box-shadow 220ms ease, filter 220ms ease;
   }
 
   .media-logo__img {
-    width: clamp(84px, 8vw, 132px);
-    height: clamp(32px, 4vw, 48px);
+    width: clamp(76px, 7vw, 120px);
+    height: clamp(26px, 3.2vw, 40px);
     object-fit: contain;
     filter: saturate(1.05);
   }
 
   .media-row--fast-right .media-logo__img {
-    height: clamp(30px, 3.5vw, 44px);
+    height: clamp(24px, 2.8vw, 36px);
   }
 
   .media-logo:hover {
-    transform: translate3d(0, -6px, 0) scale(1.05);
-    box-shadow: 0 24px 36px rgba(15, 23, 42, 0.16);
-    filter: brightness(1.05);
+    transform: translate3d(0, -4px, 0) scale(1.03);
+    box-shadow: none;
+    filter: brightness(1.06);
   }
 
   .hero-background {
