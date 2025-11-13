@@ -98,6 +98,7 @@ const MediaSection = () => {
               </div>
             ))}
           </div>
+
         </div>
       </div>
     </section>
