@@ -132,7 +132,6 @@ All colors MUST be HSL.
     flex-direction: column;
     gap: 0.5rem;
   }
-
   @media (min-width: 640px) {
     .media-section__title-group {
       flex-direction: row;
@@ -140,7 +139,6 @@ All colors MUST be HSL.
       gap: 1rem;
     }
   }
-
   .media-section__badge {
     display: inline-flex;
     align-items: center;
