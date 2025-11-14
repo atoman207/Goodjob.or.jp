@@ -728,18 +728,10 @@ All colors MUST be HSL.
   margin-bottom: clamp(2rem, 4vw, 3rem);
 }
 
-.comparison-kicker {
-  font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
-  font-size: clamp(1.5rem, 4vw, 2.2rem);
-  font-weight: 700;
-  color: #1f2937;
-}
-
+.comparison-kicker,
 .comparison-subtitle {
-  font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
-  font-size: clamp(1rem, 2.6vw, 1.25rem);
-  color: #4b5563;
-  margin-top: 0.35rem;
+  text-align: center;
+  font-size: clamp(1.5rem, 2.6vw, 1.9rem);
 }
 
 .comparison-table {
@@ -758,17 +750,20 @@ All colors MUST be HSL.
 
 .comparison-table__head-item {
   padding: 1.1rem;
-  font-family: "Noto Sans JP", sans-serif;
-  font-weight: 600;
-  font-size: 0.95rem;
+  font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 700;
+  font-size: 1.05rem;
   text-align: center;
   background: #eef2ff;
   border-right: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .comparison-table__head-item--label {
   background: transparent;
-  text-align: left;
+  justify-content: flex-start;
   padding-left: 1.5rem;
 }
 
@@ -810,8 +805,8 @@ All colors MUST be HSL.
   display: flex;
   align-items: center;
   gap: 0.55rem;
-  font-family: "Noto Sans JP", sans-serif;
-  font-size: 0.95rem;
+  font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-size: 1rem;
   color: #1f2937;
   justify-content: center;
   text-align: center;
@@ -849,8 +844,8 @@ All colors MUST be HSL.
 }
 
 .comparison-highlight h3 {
-  font-family: "Noto Sans JP", sans-serif;
-  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-size: clamp(1.35rem, 3.2vw, 1.9rem);
   font-weight: 700;
   margin-bottom: clamp(1rem, 2vw, 1.5rem);
   text-align: center;
@@ -866,11 +861,11 @@ All colors MUST be HSL.
   background: rgba(255, 255, 255, 0.12);
   border-radius: 1rem;
   padding: 1.25rem;
-  font-family: "Noto Sans JP", sans-serif;
+  font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
 }
 
 .comparison-highlight__card h4 {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 0.4rem;
 }
@@ -888,6 +883,141 @@ All colors MUST be HSL.
 
   .comparison-highlight__grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.floating-cta-container {
+  pointer-events: none;
+}
+
+.floating-cta-buttons,
+.cta-guide-card,
+.cta-guide-card button,
+.cta-guide-card a {
+  pointer-events: auto;
+}
+
+.cta-guide-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 1.25rem;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
+  max-width: 320px;
+  position: relative;
+  animation: ctaGuideFade 0.4s ease;
+}
+
+.cta-guide-card::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  right: 80px;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-left: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+  transform: rotate(45deg);
+}
+
+.cta-guide-card__close {
+  position: absolute;
+  top: 0.35rem;
+  left: 0.35rem;
+  background: #111827;
+  color: #fff;
+  border-radius: 999px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+.cta-guide-card__details {
+  font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+}
+
+.cta-guide-card__eyebrow {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+
+.cta-guide-card__lead {
+  font-size: 0.95rem;
+  color: #4b5563;
+  margin-bottom: 0.75rem;
+}
+
+.cta-guide-card__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.cta-guide-card__line {
+  background: linear-gradient(135deg, #00b900, #00c853);
+  color: #fff;
+  font-weight: 700;
+  width: 100%;
+  border-radius: 999px;
+  box-shadow: 0 12px 20px rgba(0, 185, 0, 0.25);
+  transform: translateY(0);
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.cta-guide-card__line:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 28px rgba(0, 185, 0, 0.3);
+}
+
+.cta-guide-card__phone {
+  font-weight: 700;
+  width: 100%;
+  border-radius: 999px;
+  background: #f9fafb;
+  border-color: #d1d5db;
+  color: #1f2937;
+}
+
+.cta-guide-card__note {
+  font-size: 0.85rem;
+  color: #111827;
+}
+
+.cta-guide-card__figure img {
+  width: 90px;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (min-width: 480px) {
+  .cta-guide-card__actions {
+    flex-direction: row;
+  }
+
+  .cta-guide-card__line,
+  .cta-guide-card__phone {
+    width: auto;
+    min-width: 140px;
+  }
+}
+
+@keyframes ctaGuideFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

@@ -148,10 +148,10 @@ const TrustSection = () => {
       <section className="comparison-section py-16 md:py-24">
         <div className="container mx-auto px-4">
           <div className="comparison-header">
-            <p className="comparison-kicker trust-section__title text-center">
+            <p className="comparison-kicker trust-section__title">
               4つの退職サポート機関の比較
             </p>
-            <p className="comparison-subtitle trust-section__subtitle text-center">
+            <p className="comparison-subtitle trust-section__subtitle">
               信頼性・料金・対応力の違いがひと目でわかる早見表
             </p>
           </div>
