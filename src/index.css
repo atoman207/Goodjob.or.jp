@@ -606,6 +606,291 @@ All colors MUST be HSL.
     }
   }
 
+.guardian-section {
+  background: linear-gradient(180deg, rgba(255, 247, 234, 0.95), rgba(255, 255, 255, 0.98));
+}
+
+.guardian-section__wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  align-items: center;
+}
+
+.guardian-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.5rem, 3vw, 2rem);
+  text-align: center;
+}
+
+.guardian-hero__image-wrapper {
+  width: 100%;
+  max-width: 360px;
+}
+
+.guardian-hero__image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.guardian-hero__kicker {
+  font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+  color: #f5a623;
+  letter-spacing: 0.08em;
+}
+
+.guardian-hero__title {
+  font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 800;
+  color: #1f2933;
+}
+
+.guardian-panel {
+  background: #fffdf9;
+  border-radius: 2rem;
+  border: 2px solid #f5a623;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  box-shadow: 0 16px 40px rgba(244, 167, 60, 0.15);
+  width: 100%;
+}
+
+.guardian-panel__title {
+  font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-size: clamp(1.2rem, 2.8vw, 1.5rem);
+  font-weight: 700;
+  color: #f5a623;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: clamp(1.2rem, 3vw, 1.6rem);
+  justify-content: center;
+}
+
+.guardian-panel__dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 9999px;
+  background: #f5a623;
+  display: inline-block;
+}
+
+.guardian-panel__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.guardian-panel__body p {
+  font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-size: clamp(0.95rem, 2.4vw, 1.1rem);
+  color: #5e5d5a;
+  line-height: 1.9;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .guardian-hero {
+    flex-direction: row;
+    justify-content: center;
+    text-align: left;
+  }
+
+  .guardian-hero__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 360px;
+  }
+
+  .guardian-panel__title {
+    justify-content: flex-start;
+  }
+
+  .guardian-panel__body p {
+    text-align: left;
+  }
+}
+
+.comparison-section {
+  background: #f9fafb;
+}
+
+.comparison-header {
+  text-align: center;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.comparison-kicker {
+  font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.comparison-subtitle {
+  font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: clamp(1rem, 2.6vw, 1.25rem);
+  color: #4b5563;
+  margin-top: 0.35rem;
+}
+
+.comparison-table {
+  background: #fff;
+  border-radius: 1.75rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+  margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
+}
+
+.comparison-table__head {
+  display: grid;
+  grid-template-columns: 1.2fr repeat(4, 1fr);
+}
+
+.comparison-table__head-item {
+  padding: 1.1rem;
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-align: center;
+  background: #eef2ff;
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.comparison-table__head-item--label {
+  background: transparent;
+  text-align: left;
+  padding-left: 1.5rem;
+}
+
+.comparison-col {
+  color: #111827;
+}
+
+.comparison-col--union {
+  background: #2563eb !important;
+  color: #fff;
+}
+
+.comparison-col--general {
+  background: #e5e7eb !important;
+}
+
+.comparison-col--lawyer {
+  background: #1e3a8a !important;
+  color: #f9fafb;
+}
+
+.comparison-col--agency {
+  background: #fee2e2 !important;
+  color: #7f1d1d;
+}
+
+.comparison-table__body {
+  display: grid;
+}
+
+.comparison-table__row {
+  display: grid;
+  grid-template-columns: 1.2fr repeat(4, 1fr);
+  border-top: 1px solid #e5e7eb;
+}
+
+.comparison-table__cell {
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.95rem;
+  color: #1f2937;
+  justify-content: center;
+  text-align: center;
+}
+
+.comparison-table__cell--label {
+  justify-content: flex-start;
+  font-weight: 600;
+  color: #111827;
+}
+
+.comparison-indicator {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.comparison-indicator--good {
+  color: #22c55e;
+}
+
+.comparison-indicator--mid {
+  color: #facc15;
+}
+
+.comparison-indicator--bad {
+  color: #ef4444;
+}
+
+.comparison-highlight {
+  background: #2563eb;
+  color: #fff;
+  border-radius: 1.5rem;
+  padding: clamp(1.8rem, 4vw, 2.5rem);
+  box-shadow: 0 18px 40px rgba(37, 99, 235, 0.25);
+}
+
+.comparison-highlight h3 {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-weight: 700;
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  text-align: center;
+}
+
+.comparison-highlight__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.comparison-highlight__card {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+.comparison-highlight__card h4 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.comparison-highlight__card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+@media (min-width: 768px) {
+  .comparison-table__cell {
+    font-size: 1rem;
+  }
+
+  .comparison-highlight__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
   @media (max-width: 640px) {
     .hero-background-image {
       width: 100%;
