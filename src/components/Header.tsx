@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logo from "@/assets/logo.png";
+import desktopLogo from "@/assets/logo.jpg";
+import mobileLogo from "@/assets/m-logo.jpg";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,8 +19,12 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <div className="flex items-center">
-            <img src={logo} alt="ホワイト退職代行" className="h-8 md:h-10" />
+          <div className="flex items-center gap-3">
+            <picture>
+              <source media="(min-width: 768px)" srcSet={desktopLogo} />
+              <img src={mobileLogo} alt="東京中央労働組合" className="h-12 md:h-16 w-auto object-contain" />
+            </picture>
+
           </div>
 
           <nav className="hidden md:flex items-center gap-8">

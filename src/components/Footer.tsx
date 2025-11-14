@@ -1,4 +1,5 @@
-import logo from "@/assets/logo.png";
+import logo from "@/assets/footerlogo.png";
+import mobileLogo from "@/assets/m-footerlogo.png";
 
 const Footer = () => {
   return (
@@ -6,7 +7,13 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div className="md:col-span-2">
-            <img src={logo} alt="ホワイト退職代行" className="h-8 mb-4 brightness-1 " />
+            <picture>
+              <source media="(max-width: 767px)" srcSet={mobileLogo} />
+              <img src={logo} alt="東京中央労働組合" className="h-12 mb-4 brightness-1 w-auto object-contain" />
+            </picture>
+            <span className="site-title site-title--light mb-4 inline-flex">
+              東京<span className="site-title__sword">中</span>央労働組合
+            </span>
             <p className="text-sm opacity-80 mb-4">
               東京中央労働組合が運営する退職代行サービス。
               <br />

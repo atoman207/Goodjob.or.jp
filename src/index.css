@@ -384,6 +384,62 @@ All colors MUST be HSL.
     display: inline-block;
   }
 
+  .site-title {
+    font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: clamp(1.1rem, 2vw, 1.65rem);
+    letter-spacing: 0.08em;
+    color: #284654;
+    font-weight: 600;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.1rem;
+    position: relative;
+  }
+
+  .site-title--light {
+    color: #e6edf2;
+  }
+
+  .site-title__sword {
+    position: relative;
+    padding-right: 0.45rem;
+    margin-right: 0.05rem;
+  }
+
+  .site-title__sword::before {
+    content: "";
+    position: absolute;
+    right: -0.26rem;
+    top: -0.05rem;
+    width: 0.26rem;
+    height: 0.18rem;
+    background: linear-gradient(90deg, #f3a93a 0%, #d68107 100%);
+    border-radius: 0.1rem 0.1rem 0 0;
+    box-shadow: 0 0 4px rgba(214, 130, 8, 0.35);
+  }
+
+  .site-title__sword::after {
+    content: "";
+    position: absolute;
+    right: -0.19rem;
+    top: 0.12rem;
+    width: 0.15rem;
+    height: 1.25rem;
+    background: linear-gradient(180deg, #f8f8f8 0%, #f1f1f1 35%, #aeb3bb 70%, #5a636d 100%);
+    border-radius: 0 0 0.08rem 0.08rem;
+    box-shadow: inset 0 -1px 1px rgba(42, 60, 70, 0.5);
+  }
+
+  .site-title--light .site-title__sword::before {
+    background: linear-gradient(90deg, #ffc56e 0%, #e09d33 100%);
+    box-shadow: 0 0 6px rgba(255, 197, 110, 0.45);
+  }
+
+  .site-title--light .site-title__sword::after {
+    background: linear-gradient(180deg, #ffffff 0%, #e9eef5 35%, #a5acb5 70%, #69737c 100%);
+  }
+
   .trust-section__image {
     width: 120px;
     height: 120px;
