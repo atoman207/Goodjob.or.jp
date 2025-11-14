@@ -209,8 +209,8 @@ All colors MUST be HSL.
   .media-row__track {
     display: inline-flex;
     align-items: center;
-    gap: clamp(2rem, 4vw, 3.75rem);
-    padding-inline: clamp(1.5rem, 5vw, 4.5rem);
+    gap: clamp(1.2rem, 3vw, 1.5rem);
+    padding-inline: clamp(1rem, 2.5vw, 3.25rem);
     width: max-content;
   }
 
@@ -477,6 +477,155 @@ All colors MUST be HSL.
   .trust-section__subtitle {
     font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
     letter-spacing: 0.02em;
+  }
+
+  .worry-section {
+    background: linear-gradient(180deg, rgba(255, 241, 219, 0.86), rgba(255, 247, 234, 0.96));
+  }
+
+  .worry-section__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(1.6rem, 4vw, 2.5rem);
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  .worry-section__headline-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1.2rem, 3vw, 1.6rem);
+    text-align: center;
+    width: 100%;
+  }
+
+  .worry-section__headline {
+    font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: clamp(1.95rem, 4.2vw, 2.7rem);
+    font-weight: 700;
+    color: #2f3844;
+    line-height: 1.45;
+    max-width: clamp(320px, 55vw, 520px);
+  }
+
+  .worry-section__headline-image {
+    max-width: clamp(115px, 18vw, 180px);
+    width: 100%;
+    height: auto;
+  }
+
+  .worry-section__panel {
+    background: #f5a623;
+    border-radius: 1.75rem;
+    box-shadow: 0 18px 40px rgba(201, 137, 36, 0.25);
+    padding: clamp(1.3rem, 2.8vw, 1.7rem);
+    width: min(780px, 100%);
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .worry-section__wrapper {
+      gap: clamp(2rem, 4vw, 3rem);
+    }
+
+    .worry-section__headline-block {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+      text-align: left;
+      gap: clamp(2.2rem, 4vw, 2.8rem);
+    }
+
+    .worry-section__headline-image {
+      max-width: clamp(150px, 16vw, 210px);
+    }
+  }
+
+  .worry-section__panel-title {
+    font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: clamp(1.1rem, 2.6vw, 1.4rem);
+    font-weight: 700;
+    text-align: center;
+    color: #fff;
+    letter-spacing: 0.08em;
+    margin-bottom: clamp(1rem, 2.4vw, 1.4rem);
+  }
+
+  .worry-section__list {
+    background: #fff9ef;
+    border-radius: 1.25rem;
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+    display: grid;
+    gap: clamp(0.85rem, 2vw, 1.1rem);
+  }
+
+  .worry-section__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: clamp(1rem, 2.4vw, 1.18rem);
+    color: #a85a00;
+    line-height: 1.6;
+  }
+
+  .worry-section__icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #f5a623;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .worry-section__illustration {
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+
+  .worry-section__image {
+    max-width: min(320px, 75%);
+    width: 100%;
+    height: auto;
+  }
+
+  .worry-section__image--compact {
+    max-width: min(220px, 55%);
+  }
+
+  @media (min-width: 768px) {
+    .worry-section__image {
+      max-width: 360px;
+    }
+
+    .worry-section__image--compact {
+      max-width: 260px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero-background-image {
+      width: 100%;
+      transform: translateX(-8%) scale(0.82);
+      object-position: 72% center;
+    }
+
+    .hero-headline-panel {
+      transform: rotate(-2deg) translateX(-8px);
+      padding: 0.6rem 1.25rem;
+    }
+
+    .hero-subheadline-panel {
+      transform: rotate(3deg) translateX(12px);
+      padding: 0.7rem 1.5rem;
+    }
+
+    .hero-stats-panel {
+      transform: rotate(-4deg) translateX(12px);
+    }
   }
 
   .hero-phone-button {

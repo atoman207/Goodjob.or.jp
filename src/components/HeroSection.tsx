@@ -19,7 +19,7 @@ const heroAccents: { Icon: IconType; className: string }[] = [
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center pt-16 md:pt-20 ">
+    <section id="hero" className="relative min-h-screen flex items-center pt-16 md:pt-20 ">
       
       <div className="hero-background absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1440px] md:top-6 md:bottom-6 lg:top-10 lg:bottom-10 z-0 overflow-hidden rounded-3xl">
         <img
@@ -41,7 +41,7 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 py-20 md:py-32 relative z-10">
         <div className="max-w-2xl flex flex-col items-start gap-10 relative">
           <h1
-            className="hero-headline-panel text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight self-start"
+            className="hero-headline-panel text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight self-start max-w-[90vw] sm:max-w-none"
             style={{ fontFamily: '"Noto Sans JP","Yu Gothic","Meiryo",sans-serif' }}
           >
             <span className="hero-title-line">

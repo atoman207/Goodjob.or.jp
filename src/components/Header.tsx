@@ -20,10 +20,20 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           <div className="flex items-center gap-3">
-            <picture>
-              <source media="(min-width: 768px)" srcSet={desktopLogo} />
-              <img src={mobileLogo} alt="東京中央労働組合" className="h-12 md:h-16 w-auto object-contain" />
-            </picture>
+            <button
+              type="button"
+              onClick={() => scrollToSection("hero")}
+              className="focus:outline-none"
+            >
+              <picture>
+                <source media="(min-width: 600px)" srcSet={desktopLogo} />
+                <img
+                  src={mobileLogo}
+                  alt="東京中央労働組合"
+                  className="h-12 md:h-16 w-auto object-contain"
+                />
+              </picture>
+            </button>
 
           </div>
 

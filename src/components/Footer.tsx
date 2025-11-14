@@ -2,15 +2,30 @@ import logo from "@/assets/footerlogo.png";
 import mobileLogo from "@/assets/m-footerlogo.png";
 
 const Footer = () => {
+  const handleLogoClick = () => {
+    const hero = document.getElementById("hero");
+    if (hero) {
+      hero.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <footer className="bg-foreground text-background py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div className="md:col-span-2">
-            <picture>
-              <source media="(max-width: 767px)" srcSet={mobileLogo} />
-              <img src={logo} alt="東京中央労働組合" className="h-12 mb-4 brightness-1 w-auto object-contain" />
-            </picture>
+            <button type="button" onClick={handleLogoClick} className="focus:outline-none">
+              <picture>
+                <source media="(min-width: 600px)" srcSet={logo} />
+                <img
+                  src={mobileLogo}
+                  alt="東京中央労働組合"
+                  className="h-12 mb-4 brightness-1 w-auto object-contain"
+                />
+              </picture>
+            </button>
             <span className="site-title site-title--light mb-4 inline-flex">
               東京<span className="site-title__sword">中</span>央労働組合
             </span>
