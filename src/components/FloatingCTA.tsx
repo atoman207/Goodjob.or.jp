@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Phone, X } from "lucide-react";
-import guideImage from "@/assets/m-image/download.png";
+import guideImage from "@/assets/bottommenu.png";
 
 const FloatingCTA = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -52,21 +52,28 @@ const FloatingCTA = () => {
             <X className="w-4 h-4" />
           </button>
           <div className="cta-guide-card__details">
-            <p className="cta-guide-card__eyebrow">24時間受付</p>
+            <p className="cta-guide-card__eyebrow">＼24時間受付／</p>
             <p className="cta-guide-card__lead">お気軽にお問い合わせください。</p>
             <div className="cta-guide-card__actions">
-              <Button size="sm" className="cta-guide-card__line">
-                LINE相談
+              <Button size="sm" className="cta-guide-card__action cta-guide-card__action--line">
+                <svg viewBox="0 0 36 36" className="cta-guide-card__action-icon" aria-hidden>
+                  <path
+                    d="M18 4C10.27 4 4 9.65 4 16.6c0 3.99 2.13 7.54 5.48 9.84l-.37 4.27a.8.8 0 0 0 1.2.78l4.78-2.56c.85.13 1.72.2 2.61.2 7.73 0 14-5.65 14-12.6S25.73 4 18 4Z"
+                    fill="currentColor"
+                  />
+                </svg>
+                <span>LINE相談</span>
               </Button>
-              <Button size="sm" variant="outline" className="cta-guide-card__phone">
+              <Button size="sm" variant="outline" className="cta-guide-card__action cta-guide-card__action--phone">
                 <Phone className="w-4 h-4 mr-2" />
-                電話相談
+                <span>電話相談</span>
               </Button>
             </div>
             <p className="cta-guide-card__note">相談はずーっと無料です！</p>
           </div>
-          <div className="cta-guide-card__figure">
-            <img src={guideImage} alt="案内するスタッフ" />
+          <div className="cta-guide-card__visual" aria-hidden="true">
+           
+            <img src={guideImage} className="cta-guide-card__figure" alt="" />
           </div>
         </div>
       )}

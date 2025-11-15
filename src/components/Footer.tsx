@@ -26,9 +26,7 @@ const Footer = () => {
                 />
               </picture>
             </button>
-            <span className="site-title site-title--light mb-4 inline-flex">
-              東京<span className="site-title__sword">中</span>央労働組合
-            </span>
+
             <p className="text-sm opacity-80 mb-4">
               東京中央労働組合が運営する退職代行サービス。
               <br />
