@@ -11,6 +11,7 @@ import FAQSection from "@/components/FAQSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
+import ChatbotWidget from "@/components/ChatbotWidget";
 import MediaSection from "@/components/MediaSection";
 
 const Index = () => {
@@ -32,6 +33,7 @@ const Index = () => {
       </main>
       <Footer />
       <FloatingCTA />
+      <ChatbotWidget />
     </div>
   );
 };
