@@ -55,7 +55,8 @@ const FloatingCTA = () => {
             <p className="cta-guide-card__eyebrow">＼24時間受付／</p>
             <p className="cta-guide-card__lead">お気軽にお問い合わせください。</p>
             <div className="cta-guide-card__actions">
-              <Button size="sm" className="cta-guide-card__action cta-guide-card__action--line">
+              <a href="/contact/line" target="_blank" rel="noreferrer" className="w-full">
+                <Button size="sm" className="cta-guide-card__action cta-guide-card__action--line w-full">
                 <svg viewBox="0 0 36 36" className="cta-guide-card__action-icon" aria-hidden>
                   <path
                     d="M18 4C10.27 4 4 9.65 4 16.6c0 3.99 2.13 7.54 5.48 9.84l-.37 4.27a.8.8 0 0 0 1.2.78l4.78-2.56c.85.13 1.72.2 2.61.2 7.73 0 14-5.65 14-12.6S25.73 4 18 4Z"
@@ -64,10 +65,13 @@ const FloatingCTA = () => {
                 </svg>
                 <span>LINE相談</span>
               </Button>
-              <Button size="sm" variant="outline" className="cta-guide-card__action cta-guide-card__action--phone">
+              </a>
+              <a href="/contact/phone" target="_blank" rel="noreferrer" className="w-full">
+              <Button size="sm" variant="outline" className="cta-guide-card__action cta-guide-card__action--phone w-full">
                 <Phone className="w-4 h-4 mr-2" />
                 <span>電話相談</span>
               </Button>
+              </a>
             </div>
             <p className="cta-guide-card__note">相談はずーっと無料です！</p>
           </div>

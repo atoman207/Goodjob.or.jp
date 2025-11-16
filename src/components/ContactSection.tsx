@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { Phone, Mail } from "lucide-react";
 
 const ContactSection = () => {
@@ -26,12 +27,11 @@ const ContactSection = () => {
               <p className="text-sm opacity-90 mb-4">
                 24時間受付・最短即日対応
               </p>
-              <Button
-                size="lg"
-                className="w-full bg-secondary hover:bg-secondary/90"
-              >
-                LINEで相談する
-              </Button>
+              <a href="/contact/line" target="_blank" rel="noreferrer">
+                <Button size="lg" className="w-full bg-secondary hover:bg-secondary/90">
+                  LINEで相談する
+                </Button>
+              </a>
             </div>
 
             <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-lg p-8 border border-primary-foreground/20">
@@ -42,13 +42,15 @@ const ContactSection = () => {
               <p className="text-sm opacity-90 mb-4">
                 平日 9:00〜21:00（土日祝も対応）
               </p>
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full border-2 border-primary-foreground bg-transparent hover:bg-primary-foreground/10"
-              >
-                0120-XXX-XXX
-              </Button>
+              <a href="/contact/phone" target="_blank" rel="noreferrer">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="w-full border-2 border-primary-foreground bg-transparent hover:bg-primary-foreground/10"
+                >
+                  0120-XXX-XXX
+                </Button>
+              </a>
             </div>
           </div>
 
@@ -60,12 +62,14 @@ const ContactSection = () => {
             <p className="text-sm opacity-90 mb-4">
               お急ぎでない方はメールフォームからもご相談いただけます
             </p>
-            <Button
-              variant="outline"
-              className="border-2 border-primary-foreground bg-transparent hover:bg-primary-foreground/10"
-            >
-              メールフォームへ
-            </Button>
+            <a href="/contact/mail" target="_blank" rel="noreferrer">
+              <Button
+                variant="outline"
+                className="border-2 border-primary-foreground bg-transparent hover:bg-primary-foreground/10"
+              >
+                メールフォームへ
+              </Button>
+            </a>
           </div>
         </div>
       </div>
