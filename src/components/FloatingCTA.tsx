@@ -4,27 +4,19 @@ import { Phone, X } from "lucide-react";
 import guideImage from "@/assets/bottommenu.png";
 
 const FloatingCTA = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [showGuide, setShowGuide] = useState(false);
+  const [showGuide, setShowGuide] = useState(true);
   const dismissedRef = useRef(false);
   const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY;
-      const shouldShow = scrolled > 300;
-      setIsVisible(shouldShow);
-
-      if (!shouldShow) {
-        setShowGuide(false);
+      
+      if (!dismissedRef.current) {
+        setShowGuide(true);
+      } else if (Math.abs(scrolled - lastScrollY.current) > 40) {
+        setShowGuide(true);
         dismissedRef.current = false;
-      } else {
-        if (!dismissedRef.current) {
-          setShowGuide(true);
-        } else if (Math.abs(scrolled - lastScrollY.current) > 40) {
-          setShowGuide(true);
-          dismissedRef.current = false;
-        }
       }
 
       lastScrollY.current = scrolled;
@@ -34,12 +26,10 @@ const FloatingCTA = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (!isVisible) return null;
-
   return (
     <div className="floating-cta-container fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4">
-      {showGuide && (
-        <div className="cta-guide-card">
+        {showGuide && (
+          <div className="cta-guide-card">
           <button
             type="button"
             aria-label="閉じる"

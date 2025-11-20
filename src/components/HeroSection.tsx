@@ -1,134 +1,309 @@
-import { Button } from "@/components/ui/button";
-import { Phone } from "lucide-react";
+import { Box, Container, Typography, Chip, Button, Stack } from '@mui/material';
+import { CheckCircle, Shield, CreditCard, Phone } from '@mui/icons-material';
 import type { IconType } from "react-icons";
 import {
-  FaHandshake,
-  FaMedal,
   FaRegCommentDots,
-  FaShieldAlt,
   FaFeather,
   FaHandsHelping,
+  FaCheckCircle,
 } from "react-icons/fa";
-import heroImage from "@/assets/hero-bg.jpg";
+import heroImage from "@/assets/hero-bg.jpeg";
 
-const heroAccents: { Icon: IconType; className: string }[] = [
-  { Icon: FaRegCommentDots, className: "hero-floating-icon hero-floating-icon--one" },
-  { Icon: FaFeather, className: "hero-floating-icon hero-floating-icon--two" },
-  { Icon: FaHandsHelping, className: "hero-floating-icon hero-floating-icon--three" },
+const heroAccents: { Icon: IconType; sx: any }[] = [
+  { Icon: FaRegCommentDots, sx: { position: 'absolute', top: '15%', left: '8%', fontSize: '1.8rem', color: 'rgba(255,255,255,0.5)', animation: 'float 3s ease-in-out infinite' } },
+  { Icon: FaFeather, sx: { position: 'absolute', top: '55%', right: '12%', fontSize: '1.4rem', color: 'rgba(255,255,255,0.4)', animation: 'float 4s ease-in-out infinite' } },
+  { Icon: FaHandsHelping, sx: { position: 'absolute', bottom: '25%', left: '15%', fontSize: '1.6rem', color: 'rgba(255,255,255,0.5)', animation: 'float 3.5s ease-in-out infinite' } },
 ];
 
 const HeroSection = () => {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center pt-16 md:pt-20 ">
-      
-      <div className="hero-background absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1440px] md:top-6 md:bottom-6 lg:top-10 lg:bottom-10 z-0 overflow-hidden rounded-3xl">
-        <img
+    <Box
+      id="hero"
+      component="section"
+      className="hero-banner-section"
+      sx={{
+        position: 'relative',
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        pt: { xs: 8, md: 10 },
+        overflow: 'hidden',
+      }}
+    >
+      {/* Background Image - Full Screen */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: { xs: '4rem', md: '5rem' },
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: '100%',
+          height: { xs: 'calc(100% - 4rem)', md: 'calc(100% - 5rem)' },
+          zIndex: 0,
+          overflow: 'hidden',
+        }}
+      >
+        <Box
+          component="img"
           src={heroImage}
           alt="Professional consultant"
-          className="hero-background-image w-[1440px] max-w-full h-full object-cover object-center md:object-[40%_center] opacity-100"
+          sx={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: { xs: 'center 30%', md: 'center center' },
+            opacity: 1,
+            filter: 'brightness(0.9) contrast(1.1) saturate(1.1)',
+          }}
         />
-        <div className="hero-background-overlay absolute inset-0" />
-        <span className="hero-bird hero-bird--one" aria-hidden="true" />
-        <span className="hero-bird hero-bird--two" aria-hidden="true" />
-        <span className="hero-bird hero-bird--three" aria-hidden="true" />
-        {heroAccents.map(({ Icon, className }, index) => (
-          <span key={index} className={className} aria-hidden="true">
-            <Icon />
-          </span>
+        {heroAccents.map(({ Icon, sx }, index) => (
+          <Icon key={index} style={sx} aria-hidden="true" />
         ))}
-      </div>
+      </Box>
 
-      <div className="container mx-auto px-4 py-20 md:py-32 relative z-10">
-        <div className="max-w-2xl flex flex-col items-start gap-10 relative">
-          <h1
-            className="hero-headline-panel text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight self-start max-w-[90vw] sm:max-w-none"
-            style={{ fontFamily: '"Noto Sans JP","Yu Gothic","Meiryo",sans-serif' }}
-          >
-            <span className="hero-title-line">
-              <FaShieldAlt className="hero-title-line__icon" aria-hidden="true" />
-              あなたの退職、
-            </span>
-            <br />
-            <span className="hero-title-line hero-title-line--secondary">
-              法的に安心・確実。
-              <FaHandshake
-                className="hero-title-line__icon hero-title-line__icon--trail"
-                aria-hidden="true"
-              />
-            </span>
-          </h1>
-          <p
-            className="hero-subheadline-panel text-xl md:text-2xl self-center"
-            style={{ fontFamily: '"Sawarabi Mincho","Hiragino Mincho ProN","Yu Mincho",serif' }}
-          >
-            <span className="hero-subtitle-segment">
-              <FaRegCommentDots className="hero-subtitle-icon" aria-hidden="true" />
-              弁護士監修の退職代行で、
-            </span>
-            <br />
-            <span className="hero-subtitle-segment hero-subtitle-segment--second">
-              安心の新たなスタートを。
-              <FaFeather className="hero-subtitle-icon hero-subtitle-icon--flutter" aria-hidden="true" />
-            </span>
-          </p>
-          <p
-            className="hero-stats-panel text-2xl md:text-3xl text-muted-foreground mb-8 self-end"
-            style={{
-              fontFamily: '"Dancing Script","Pacifico","Yu Mincho",cursive',
-              color: "#ffffff",
+      <Container sx={{ position: 'relative', zIndex: 10, py: { xs: 4, md: 6 } }}>
+        <Box className="hero-banner-content" sx={{ maxWidth: { xs: '100%', md: '900px' }, mx: 'auto' }}>
+          {/* Main Headline */}
+          <Typography
+            className="hero-banner-main-title"
+            sx={{
+              fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem', lg: '3rem' },
+              fontWeight: 800,
+              lineHeight: 1.3,
+              color: '#ffffff',
+              textAlign: 'center',
+              mb: { xs: 1.5, md: 2 },
+              textShadow: '2px 2px 8px rgba(0,0,0,0.5), 0 0 20px rgba(0,0,0,0.3)',
             }}
           >
-            <span className="hero-stats-icon-wrapper">
-              <FaMedal className="hero-stats-icon" aria-hidden="true" />
-              労働組合・累計
-            </span>
-            <span
-              style={{
-                color: "#facc15",
-                fontSize: "200%",
-                lineHeight: 1,
-                textShadow:
-                  "-3px -3px 0 rgb(254, 254, 255), 3px 3px 6px rgba(255, 255, 255, 0.85), 0 0 10px rgba(255, 255, 255, 0.75)",
-                WebkitTextStroke: "1px rgba(17,24,39,0.95)",
-                display: "inline-block",
-                transform: "skew(-6deg) rotate(-1.5deg)",
+            もう悩まなくていいんです。
+            <br />
+            <Box component="span" className="hero-banner-emphasis">
+              今こそ決断！
+            </Box>
+          </Typography>
+
+          {/* Subheadline */}
+          <Typography
+            className="hero-banner-subtitle"
+            sx={{
+              fontSize: { xs: '1.1rem', sm: '1.3rem', md: '1.5rem' },
+              fontWeight: 700,
+              lineHeight: 1.4,
+              color: '#facc15',
+              textAlign: 'center',
+              mb: { xs: 2, md: 3 },
+              textShadow: '2px 2px 6px rgba(0,0,0,0.6), 0 0 15px rgba(250,204,21,0.4)',
+            }}
+          >
+            上司に会わず、会社に行かず、サヨナラを！
+          </Typography>
+
+          {/* Service Name Badge */}
+          <Box sx={{ display: 'flex', justifyContent: 'center', mb: { xs: 2, md: 3 } }}>
+            <Box className="hero-service-badge">
+              <Typography
+                sx={{
+                  fontSize: { xs: '1.3rem', sm: '1.6rem', md: '1.9rem' },
+                  fontWeight: 800,
+                  color: '#ffffff',
+                  textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
+                }}
+              >
+                ホワイト退職代行
+              </Typography>
+            </Box>
+          </Box>
+
+          {/* Trust Line */}
+          <Typography
+            className="hero-trust-line"
+            sx={{
+              fontSize: { xs: '0.85rem', sm: '0.95rem', md: '1.1rem' },
+              fontWeight: 600,
+              color: '#ffffff',
+              textAlign: 'center',
+              mb: { xs: 2, md: 2.5 },
+              textShadow: '1px 1px 4px rgba(0,0,0,0.5)',
+            }}
+          >
+            安心と信頼で選ぶなら、東京都労働委員会が正式認証した
+            <br />
+            <Box component="span" sx={{ fontSize: { xs: '0.95rem', sm: '1.1rem', md: '1.25rem' }, fontWeight: 700 }}>
+              東京中央労働組合にお任せください。
+            </Box>
+          </Typography>
+
+          {/* Features Row */}
+          <Box className="hero-features-row" sx={{ display: 'flex', justifyContent: 'center', gap: { xs: 1, sm: 2, md: 3 }, mb: { xs: 2, md: 3 }, flexWrap: 'wrap' }}>
+            <Chip
+              icon={<CheckCircle sx={{ color: '#22c55e !important' }} />}
+              label="カンタン、カードOK"
+              className="hero-feature-chip hero-feature-chip--simple"
+              sx={{
+                fontSize: { xs: '0.75rem', sm: '0.85rem', md: '0.95rem' },
+                fontWeight: 700,
+                height: { xs: '32px', md: '40px' },
+                px: { xs: 1.5, md: 2 },
+              }}
+            />
+            <Chip
+              icon={<Shield sx={{ color: '#3b82f6 !important' }} />}
+              label="信頼"
+              className="hero-feature-chip hero-feature-chip--trust"
+              sx={{
+                fontSize: { xs: '0.75rem', sm: '0.85rem', md: '0.95rem' },
+                fontWeight: 700,
+                height: { xs: '32px', md: '40px' },
+                px: { xs: 1.5, md: 2 },
+              }}
+            />
+            <Chip
+              icon={<FaCheckCircle style={{ color: '#facc15' }} />}
+              label="安心"
+              className="hero-feature-chip hero-feature-chip--safe"
+              sx={{
+                fontSize: { xs: '0.75rem', sm: '0.85rem', md: '0.95rem' },
+                fontWeight: 700,
+                height: { xs: '32px', md: '40px' },
+                px: { xs: 1.5, md: 2 },
+              }}
+            />
+          </Box>
+
+          {/* Benefits Row */}
+          <Box className="hero-benefits-row" sx={{ display: 'flex', justifyContent: 'center', gap: { xs: 1, sm: 1.5, md: 2 }, mb: { xs: 2.5, md: 3 }, flexWrap: 'wrap' }}>
+            <Chip
+              label="LINEで完結"
+              className="hero-benefit-chip hero-benefit-chip--line"
+              sx={{
+                fontSize: { xs: '0.7rem', sm: '0.8rem', md: '0.9rem' },
+                fontWeight: 600,
+                height: { xs: '28px', md: '36px' },
+                px: { xs: 1, md: 1.5 },
+              }}
+            />
+            <Chip
+              label="返金保証"
+              className="hero-benefit-chip hero-benefit-chip--refund"
+              sx={{
+                fontSize: { xs: '0.7rem', sm: '0.8rem', md: '0.9rem' },
+                fontWeight: 600,
+                height: { xs: '28px', md: '36px' },
+                px: { xs: 1, md: 1.5 },
+              }}
+            />
+            <Chip
+              icon={<CreditCard sx={{ fontSize: '1rem !important' }} />}
+              label="後払いOK"
+              className="hero-benefit-chip hero-benefit-chip--payment"
+              sx={{
+                fontSize: { xs: '0.7rem', sm: '0.8rem', md: '0.9rem' },
+                fontWeight: 600,
+                height: { xs: '28px', md: '36px' },
+                px: { xs: 1, md: 1.5 },
+              }}
+            />
+          </Box>
+
+          {/* Price Section */}
+          <Box className="hero-price-section" sx={{ textAlign: 'center', mt: { xs: 2, md: 3 } }}>
+            <Typography
+              sx={{
+                fontSize: { xs: '0.75rem', sm: '0.85rem', md: '0.95rem' },
+                color: '#ffffff',
+                mb: { xs: 0.5, md: 1 },
+                textShadow: '1px 1px 3px rgba(0,0,0,0.5)',
               }}
             >
-              5,000
-            </span> 
-            件以上の実績
-          </p>
+              料金は下記だけ（追加一切なし）
+            </Typography>
+            <Typography
+              className="hero-price-amount"
+              sx={{
+                fontSize: { xs: '2rem', sm: '2.5rem', md: '3.5rem', lg: '4rem' },
+                fontWeight: 900,
+                color: '#facc15',
+                textShadow: '3px 3px 8px rgba(0,0,0,0.6), 0 0 20px rgba(250,204,21,0.5)',
+                lineHeight: 1,
+                fontFamily: '"Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif',
+              }}
+            >
+              ￥２４,０００
+              <Box component="span" sx={{ fontSize: { xs: '1rem', sm: '1.2rem', md: '1.5rem' }, ml: 0.5 }}>
+                （税込）
+              </Box>
+            </Typography>
+          </Box>
 
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a href="/contact/line" target="_blank" rel="noreferrer">
+          {/* CTA Buttons */}
+          <Box sx={{ display: 'flex', justifyContent: 'center', mt: { xs: 3, md: 4 } }}>
+            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ width: { xs: '100%', sm: 'auto' } }}>
               <Button
-                size="lg"
-                className="hero-line-button text-lg px-10 py-6 bg-secondary hover:bg-secondary/90"
+                component="a"
+                href="/contact/line"
+                target="_blank"
+                rel="noreferrer"
+                variant="contained"
+                color="secondary"
+                size="large"
+                sx={{
+                  fontSize: { xs: '0.875rem', md: '1.125rem' },
+                  fontWeight: 700,
+                  px: { xs: 4, md: 6 },
+                  py: { xs: 1.5, md: 2 },
+                  borderRadius: '9999px',
+                  boxShadow: '0 8px 24px rgba(67, 160, 71, 0.4)',
+                  '&:hover': {
+                    boxShadow: '0 12px 32px rgba(67, 160, 71, 0.5)',
+                    transform: 'translateY(-2px)',
+                  },
+                  transition: 'all 0.3s ease',
+                }}
+                startIcon={
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19.11 17.205c-.372 0-1.088 1.39-1.518 1.39a.63.63 0 0 1-.315-.1c-.802-.402-1.504-.817-2.163-1.447-.545-.516-1.146-1.29-1.46-1.963a.426.426 0 0 1-.073-.215c0-.33.99-.945.99-1.49 0-.143-.73-2.09-.832-2.335-.143-.372-.214-.487-.6-.487-.187 0-.36-.043-.53-.043-.302 0-.53.115-.746.315-.688.645-1.032 1.318-1.06 2.264v.114c-.015.99.472 1.977 1.017 2.78 1.23 1.82 2.506 3.41 4.554 4.34.616.287 2.035.888 2.722.888.817 0 2.15-.515 2.478-1.318.13-.33.244-.73.244-1.088 0-.058 0-.144-.03-.215-.1-.172-2.434-1.39-2.678-1.39zm-2.908 7.593c-1.747 0-3.48-.53-4.942-1.49L7.793 24.41l1.132-3.337a8.955 8.955 0 0 1-1.72-5.272c0-4.955 4.04-8.995 8.997-8.995S25.2 10.845 25.2 15.8c0 4.958-4.04 8.998-8.998 8.998zm0-19.798c-5.96 0-10.8 4.842-10.8 10.8 0 1.964.53 3.898 1.546 5.574L5 27.176l5.974-1.92a10.807 10.807 0 0 0 16.03-9.455c0-5.958-4.842-10.8-10.802-10.8z"/>
+                  </svg>
+                }
               >
-              <svg
-                className="hero-line-icon w-6 h-6 mr-2"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M19.11 17.205c-.372 0-1.088 1.39-1.518 1.39a.63.63 0 0 1-.315-.1c-.802-.402-1.504-.817-2.163-1.447-.545-.516-1.146-1.29-1.46-1.963a.426.426 0 0 1-.073-.215c0-.33.99-.945.99-1.49 0-.143-.73-2.09-.832-2.335-.143-.372-.214-.487-.6-.487-.187 0-.36-.043-.53-.043-.302 0-.53.115-.746.315-.688.645-1.032 1.318-1.06 2.264v.114c-.015.99.472 1.977 1.017 2.78 1.23 1.82 2.506 3.41 4.554 4.34.616.287 2.035.888 2.722.888.817 0 2.15-.515 2.478-1.318.13-.33.244-.73.244-1.088 0-.058 0-.144-.03-.215-.1-.172-2.434-1.39-2.678-1.39zm-2.908 7.593c-1.747 0-3.48-.53-4.942-1.49L7.793 24.41l1.132-3.337a8.955 8.955 0 0 1-1.72-5.272c0-4.955 4.04-8.995 8.997-8.995S25.2 10.845 25.2 15.8c0 4.958-4.04 8.998-8.998 8.998zm0-19.798c-5.96 0-10.8 4.842-10.8 10.8 0 1.964.53 3.898 1.546 5.574L5 27.176l5.974-1.92a10.807 10.807 0 0 0 16.03-9.455c0-5.958-4.842-10.8-10.802-10.8z"/>
-              </svg>
-              <span className="hero-line-label">LINEで簡単相談</span>
+                LINEで相談
               </Button>
-            </a>
-            <a href="/contact/phone" target="_blank" rel="noreferrer">
               <Button
-                size="lg"
-                variant="outline"
-                className="hero-phone-button text-lg px-8 py-6 border-2"
+                component="a"
+                href="/contact/phone"
+                target="_blank"
+                rel="noreferrer"
+                variant="outlined"
+                size="large"
+                sx={{
+                  fontSize: { xs: '0.875rem', md: '1.125rem' },
+                  fontWeight: 700,
+                  px: { xs: 4, md: 6 },
+                  py: { xs: 1.5, md: 2 },
+                  borderRadius: '9999px',
+                  borderWidth: 2,
+                  borderColor: '#ffffff',
+                  color: '#ffffff',
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  backdropFilter: 'blur(10px)',
+                  '&:hover': {
+                    borderColor: '#ffffff',
+                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                    transform: 'translateY(-2px)',
+                    boxShadow: '0 8px 24px rgba(255, 255, 255, 0.3)',
+                  },
+                  transition: 'all 0.3s ease',
+                }}
+                startIcon={<Phone />}
               >
-                <Phone className="hero-phone-icon w-5 h-5 mr-2" />
-                電話で相談
+                無料相談
               </Button>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
+            </Stack>
+          </Box>
+        </Box>
+      </Container>
+    </Box>
   );
 };
 

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Newspaper } from "lucide-react";
+import { Link } from "react-router-dom";
 import fujiLogo from "@/assets/media image/huji-e1715413548344.jpg";
 import tvAsahiLogo from "@/assets/media image/terebiasahi.png";
 import nhkLogo from "@/assets/media image/NHK.svg_.png";
@@ -57,7 +58,7 @@ const mediaLogos = [...topLogos, ...bottomLogos];
 
 const MediaSection = () => {
   return (
-    <section className="media-section py-16 md:py-24 bg-background">
+    <section className="media-section py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
         <div className="media-section__header mb-10">
           <div className="media-section__title-group">
@@ -69,8 +70,14 @@ const MediaSection = () => {
               国内主要メディアで多数掲載されています
             </span>
           </div>
-          <Button variant="outline" className="media-section__cta">
-            取材依頼はこちら →
+          <Button
+            variant="outline"
+            className="media-section__cta"
+            asChild
+          >
+            <Link to="/media/inquiry">
+              取材依頼はこちら →
+            </Link>
           </Button>
         </div>
 

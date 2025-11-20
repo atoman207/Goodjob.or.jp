@@ -74,6 +74,9 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
+            <p className="text-sm opacity-80 mt-4">
+              東京都中央区日本橋室町1丁目11番12号　日本橋水野ビル7F
+            </p>
           </div>
         </div>
 

@@ -24,42 +24,47 @@ const guardianDescription = [
 const WorryandIntroduction = () => {
   return (
     <>
-      <section id="worry" className="worry-section py-16 md:py-24">
+      <section id="worry" className="worry-section py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="worry-section__wrapper">
+            {/* Headline and Image Row */}
             <div className="worry-section__headline-block">
-              <h2 className="worry-section__headline">今の会社、辞めたいのに辞めれない・・・</h2>
+              <h2 className="worry-section__headline section-title">
+                今の会社、辞めたいのに辞めれない・・・
+              </h2>
               <img src={worryImage} alt="悩むビジネスパーソン" className="worry-section__headline-image" />
             </div>
 
-            <div className="worry-section__panel">
-              <p className="worry-section__panel-title">ひとりで悩んでいませんか？</p>
-              <ul className="worry-section__list">
-                {concerns.map((item, index) => (
-                  <li key={index} className="worry-section__item">
-                    <CheckCircle2 className="worry-section__icon" aria-hidden="true" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+            {/* Panel with overlapping image */}
+            <div className="worry-section__panel-wrapper">
+              <div className="worry-section__panel">
+                <p className="worry-section__panel-title">ひとりで悩んでいませんか？</p>
+                <ul className="worry-section__list">
+                  {concerns.map((item, index) => (
+                    <li key={index} className="worry-section__item">
+                      <CheckCircle2 className="worry-section__icon" aria-hidden="true" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="guardian-section py-16 md:py-24">
+      <section className="guardian-section py-0 md:py-0 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="guardian-section__wrapper">
+            {/* Upper Section: Title centered, Image in upper right */}
             <div className="guardian-hero">
+              <h3 className="guardian-hero__title section-title">あなたの退職を、確実に守ります。</h3>
               <div className="guardian-hero__image-wrapper">
                 <img src={guardianImage} alt="退職代行ガーディアン" className="guardian-hero__image" />
               </div>
-              <div className="guardian-hero__text">
-                <p className="guardian-hero__kicker">退職代行ガーディアンなら</p>
-                <h2 className="guardian-hero__title">あなたを守ります</h2>
-              </div>
             </div>
 
+            {/* Lower Section: Panel with Heading and Description */}
             <div className="guardian-panel">
               <p className="guardian-panel__title">
                 <span className="guardian-panel__dot" aria-hidden="true" />
