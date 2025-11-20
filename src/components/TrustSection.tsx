@@ -270,17 +270,7 @@ const TrustSection = () => {
             </div>
           </div>
 
-          <div className="comparison-highlight">
-            <h3>東京中央労働組合が最も安心できる理由</h3>
-            <div className="comparison-highlight__grid">
-              {highlightCards.map((card) => (
-                <div key={card.title} className="comparison-highlight__card">
-                  <h4>{card.title}</h4>
-                  <p>{card.body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+
         </div>
       </section>
 

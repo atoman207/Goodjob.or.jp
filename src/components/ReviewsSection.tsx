@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import avatar1 from "@/assets/review-avatar-1.jpg";
 import avatar2 from "@/assets/review-avatar-2.jpg";
 import avatar3 from "@/assets/review-avatar-3.jpg";
+import reviewsBackground from "@/assets/シルエット男女5人富士山.jpeg";
 
 const ReviewsSection = () => {
   const reviews = [
@@ -45,8 +46,9 @@ const ReviewsSection = () => {
   ];
 
   return (
-    <section id="reviews" className="py-20 md:py-32 bg-gray-50">
-      <div className="container mx-auto px-4">
+    <section id="reviews" className="reviews-section py-20 md:py-32 bg-gray-50 relative">
+      <div className="reviews-section__background" style={{ backgroundImage: `url(${reviewsBackground})` }} aria-hidden="true"></div>
+      <div className="container mx-auto px-4 relative z-10">
         <h2 className="section-title text-3xl md:text-4xl font-bold text-center mb-4">
           利用者レビュー
         </h2>
@@ -106,7 +108,9 @@ const ReviewsSection = () => {
           <p className="text-muted-foreground mb-4">
             あなたも安心して新しいスタートを切りませんか？
           </p>
-          <Button size="lg">まず無料相談</Button>
+          <a href="/media/inquiry" target="_blank" rel="noreferrer">
+              <Button size="lg">まず無料相談</Button>
+          </a>
         </div>
       </div>
     </section>
