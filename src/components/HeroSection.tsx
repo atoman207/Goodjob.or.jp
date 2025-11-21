@@ -63,43 +63,108 @@ const HeroSection = () => {
         ))}
       </Box>
 
-      <Container sx={{ position: 'relative', zIndex: 10, py: { xs: 4, md: 6 } }}>
-        <Box className="hero-banner-content" sx={{ maxWidth: { xs: '100%', md: '900px' }, mx: 'auto' }}>
-          {/* Main Headline */}
+      {/* Male Speech Bubble - Left Side */}
+      <Box
+        sx={{
+          position: 'absolute',
+          left: { xs: '5%', md: '8%' },
+          top: { xs: '25%', md: '30%' },
+          zIndex: 15,
+          maxWidth: { xs: '45%', md: '35%' },
+        }}
+      >
+        <Box
+          className="hero-speech-bubble hero-speech-bubble--male"
+          sx={{
+            bgcolor: '#facc15',
+            color: '#ffffff',
+            borderRadius: '50%',
+            padding: { xs: '1rem 1.25rem', md: '1.5rem 2rem' },
+            position: 'relative',
+            boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
+            transform: 'rotate(-5deg)',
+            '&::after': {
+              content: '""',
+              position: 'absolute',
+              bottom: '-15px',
+              left: { xs: '20%', md: '25%' },
+              width: 0,
+              height: 0,
+              borderLeft: '15px solid transparent',
+              borderRight: '15px solid transparent',
+              borderTop: '20px solid #facc15',
+              transform: 'rotate(15deg)',
+            },
+          }}
+        >
           <Typography
-            className="hero-banner-main-title"
             sx={{
-              fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem', lg: '3rem' },
+              fontSize: { xs: '0.85rem', sm: '1rem', md: '1.2rem', lg: '1.4rem' },
               fontWeight: 800,
-              lineHeight: 1.3,
-              color: '#ffffff',
+              lineHeight: 1.4,
               textAlign: 'center',
-              mb: { xs: 1.5, md: 2 },
-              textShadow: '2px 2px 8px rgba(0,0,0,0.5), 0 0 20px rgba(0,0,0,0.3)',
+              textShadow: '1px 1px 3px rgba(0,0,0,0.2)',
             }}
           >
             もう悩まなくていいんです。
             <br />
-            <Box component="span" className="hero-banner-emphasis">
-              今こそ決断！
-            </Box>
+            今こそ決断！
           </Typography>
+        </Box>
+      </Box>
 
-          {/* Subheadline */}
+      {/* Female Speech Bubble - Right Side */}
+      <Box
+        sx={{
+          position: 'absolute',
+          right: { xs: '5%', md: '8%' },
+          top: { xs: '35%', md: '40%' },
+          zIndex: 15,
+          maxWidth: { xs: '45%', md: '35%' },
+        }}
+      >
+        <Box
+          className="hero-speech-bubble hero-speech-bubble--female"
+          sx={{
+            bgcolor: '#dc2626',
+            color: '#facc15',
+            borderRadius: '50%',
+            padding: { xs: '1rem 1.25rem', md: '1.5rem 2rem' },
+            position: 'relative',
+            boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
+            transform: 'rotate(5deg)',
+            '&::after': {
+              content: '""',
+              position: 'absolute',
+              bottom: '-15px',
+              right: { xs: '20%', md: '25%' },
+              width: 0,
+              height: 0,
+              borderLeft: '15px solid transparent',
+              borderRight: '15px solid transparent',
+              borderTop: '20px solid #dc2626',
+              transform: 'rotate(-15deg)',
+            },
+          }}
+        >
           <Typography
-            className="hero-banner-subtitle"
             sx={{
-              fontSize: { xs: '1.1rem', sm: '1.3rem', md: '1.5rem' },
-              fontWeight: 700,
+              fontSize: { xs: '0.85rem', sm: '1rem', md: '1.2rem', lg: '1.4rem' },
+              fontWeight: 800,
               lineHeight: 1.4,
-              color: '#facc15',
               textAlign: 'center',
-              mb: { xs: 2, md: 3 },
-              textShadow: '2px 2px 6px rgba(0,0,0,0.6), 0 0 15px rgba(250,204,21,0.4)',
+              textShadow: '1px 1px 3px rgba(0,0,0,0.3)',
             }}
           >
-            上司に会わず、会社に行かず、サヨナラを！
+            上司に会わず、会社に行かず、
+            <br />
+            サヨナラを！
           </Typography>
+        </Box>
+      </Box>
+
+      <Container sx={{ position: 'relative', zIndex: 10, py: { xs: 4, md: 6 } }}>
+        <Box className="hero-banner-content" sx={{ maxWidth: { xs: '100%', md: '900px' }, mx: 'auto' }}>
 
           {/* Service Name Badge */}
           <Box sx={{ display: 'flex', justifyContent: 'center', mb: { xs: 2, md: 3 } }}>

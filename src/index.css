@@ -1019,18 +1019,6 @@ All colors MUST be HSL.
   animation: ctaGuideFade 0.4s ease, ctaGuideFloat 6s ease-in-out infinite;
 }
 
-.cta-guide-card::after {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  right: 80px;
-  width: 18px;
-  height: 18px;
-  background: #fff;
-  border-left: 1px solid #e5e7eb;
-  border-bottom: 1px solid #e5e7eb;
-  transform: rotate(45deg);
-}
 
 .cta-guide-card__close {
   position: absolute;
@@ -1419,6 +1407,7 @@ All colors MUST be HSL.
   height: 200px;
   pointer-events: none;
   z-index: 0;
+  padding-left: 30px;
 }
 
 .cta-guide-card__plate {
@@ -2362,15 +2351,15 @@ All colors MUST be HSL.
   }
 
   .cta-guide-card {
-    width: auto !important;
-    max-width: 110px !important;
-    min-width: 110px !important;
-    padding: 0.35rem !important;
-    padding-top: 1.2rem !important;
+    width: 50% !important;
+    max-width: 50% !important;
+    min-width: 50% !important;
+    padding: 0.75rem !important;
+    padding-top: 1.5rem !important;
     display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 0.35rem !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: 0.75rem !important;
     position: relative !important;
   }
 
@@ -2384,21 +2373,28 @@ All colors MUST be HSL.
     display: none !important;
   }
 
+  /* Hide all text content on mobile */
+  .cta-guide-card__details p,
+  .cta-guide-card__details span {
+    display: none !important;
+  }
+
   .cta-guide-card__actions {
     display: flex !important;
     flex-direction: column !important;
-    gap: 0.3rem !important;
-    width: 100% !important;
+    gap: 0.5rem !important;
+    width: auto !important;
+    flex: 1 !important;
     margin: 0 !important;
     order: 2 !important;
   }
 
   .cta-guide-card__action {
     width: 100% !important;
-    font-size: 0.6rem !important;
-    padding: 0.3rem 0.35rem !important;
+    font-size: 0.75rem !important;
+    padding: 0.5rem 0.75rem !important;
     min-width: auto !important;
-    line-height: 1.1 !important;
+    line-height: 1.2 !important;
   }
 
   .cta-guide-card__action-icon {
@@ -2420,15 +2416,21 @@ All colors MUST be HSL.
 
   .cta-guide-card__visual {
     position: static !important;
-    width: 65px !important;
-    height: 65px !important;
+    width: auto !important;
+    max-width: 80px !important;
+    height: auto !important;
     margin: 0 !important;
     order: 1 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    flex-shrink: 0 !important;
   }
 
   .cta-guide-card__figure {
     width: 100% !important;
-    height: 100% !important;
+    height: auto !important;
+    max-height: 140px !important;
     object-fit: contain !important;
     transform: none !important;
     filter: none !important;
