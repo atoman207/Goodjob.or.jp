@@ -8,6 +8,7 @@ import {
   FaCheckCircle,
 } from "react-icons/fa";
 import heroImage from "@/assets/hero-bg.jpeg";
+import serviceLogo from "@/assets/slogo.jpg";
 
 const heroAccents: { Icon: IconType; sx: any }[] = [
   { Icon: FaRegCommentDots, sx: { position: 'absolute', top: '15%', left: '8%', fontSize: '1.8rem', color: 'rgba(255,255,255,0.5)', animation: 'float 3s ease-in-out infinite' } },
@@ -103,16 +104,17 @@ const HeroSection = () => {
           {/* Service Name Badge */}
           <Box sx={{ display: 'flex', justifyContent: 'center', mb: { xs: 2, md: 3 } }}>
             <Box className="hero-service-badge">
-              <Typography
+              <Box
+                component="img"
+                src={serviceLogo}
+                alt="ホワイト退職代行"
                 sx={{
-                  fontSize: { xs: '1.3rem', sm: '1.6rem', md: '1.9rem' },
-                  fontWeight: 800,
-                  color: '#ffffff',
-                  textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
+                  height: { xs: '60px', sm: '80px', md: '100px' },
+                  width: 'auto',
+                  objectFit: 'contain',
+                  filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.5))',
                 }}
-              >
-                ホワイト退職代行
-              </Typography>
+              />
             </Box>
           </Box>
 
