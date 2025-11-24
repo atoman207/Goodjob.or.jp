@@ -4,31 +4,54 @@ import { Phone, X } from "lucide-react";
 import guideImage from "@/assets/bottommenu.png";
 
 const FloatingCTA = () => {
-  const [showGuide, setShowGuide] = useState(true);
+  const [showGuide, setShowGuide] = useState(false);
+  const [isInHeroSection, setIsInHeroSection] = useState(true);
   const dismissedRef = useRef(false);
   const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY;
+      const heroElement = document.getElementById("hero");
       
-      if (!dismissedRef.current) {
-        setShowGuide(true);
-      } else if (Math.abs(scrolled - lastScrollY.current) > 40) {
-        setShowGuide(true);
-        dismissedRef.current = false;
+      if (heroElement) {
+        const heroBottom = heroElement.offsetTop + heroElement.offsetHeight;
+        const isPastHero = scrolled > heroBottom - 100; // Show 100px before hero ends
+        
+        setIsInHeroSection(!isPastHero);
+        
+        if (isPastHero) {
+          if (!dismissedRef.current) {
+            setShowGuide(true);
+          } else if (Math.abs(scrolled - lastScrollY.current) > 40) {
+            setShowGuide(true);
+            dismissedRef.current = false;
+          }
+        } else {
+          setShowGuide(false);
+        }
       }
 
       lastScrollY.current = scrolled;
     };
 
+    // Check initial position
+    handleScroll();
+    
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <div className="floating-cta-container fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4">
-        {showGuide && (
+    <div 
+      className="floating-cta-container fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4"
+      style={{ 
+        opacity: isInHeroSection ? 0 : 1,
+        pointerEvents: isInHeroSection ? 'none' : 'auto',
+        transition: 'opacity 0.3s ease-in-out'
+      }}
+    >
+        {showGuide && !isInHeroSection && (
           <div className="cta-guide-card">
           <button
             type="button"

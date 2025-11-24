@@ -1,19 +1,49 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import desktopLogo from "@/assets/logo.jpg";
 import mobileLogo from "@/assets/m-logo.jpg";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsMenuOpen(false);
+  const handleNavigation = (id: string) => {
+    setIsMenuOpen(false);
+    
+    // If we're on the home page, scroll to section
+    if (location.pathname === "/") {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      // If we're on a different page, navigate to home with hash
+      navigate(`/#${id}`);
+      // Scroll after a short delay to ensure page has loaded
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
     }
   };
+
+  // Handle hash navigation when component mounts or location changes
+  useEffect(() => {
+    if (location.pathname === "/" && location.hash) {
+      const id = location.hash.substring(1); // Remove the #
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    }
+  }, [location]);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border">
@@ -22,7 +52,13 @@ const Header = () => {
           <div className="flex items-center gap-3">
             <button
               type="button"
-              onClick={() => scrollToSection("hero")}
+              onClick={() => {
+                if (location.pathname === "/") {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                } else {
+                  navigate("/");
+                }
+              }}
               className="focus:outline-none"
             >
               <picture>
@@ -39,30 +75,30 @@ const Header = () => {
 
           <nav className="hidden md:flex items-center gap-8">
             <button
-              onClick={() => scrollToSection("services")}
+              onClick={() => handleNavigation("services")}
               className="text-foreground hover:text-primary transition-colors"
             >
               サービス内容
             </button>
             <button
-              onClick={() => scrollToSection("pricing")}
+              onClick={() => handleNavigation("pricing")}
               className="text-foreground hover:text-primary transition-colors"
             >
               料金
             </button>
             <button
-              onClick={() => scrollToSection("process")}
+              onClick={() => handleNavigation("process")}
               className="text-foreground hover:text-primary transition-colors"
             >
               手順
             </button>
             <button
-              onClick={() => scrollToSection("reviews")}
+              onClick={() => handleNavigation("reviews")}
               className="text-foreground hover:text-primary transition-colors"
             >
               利用者レビュー
             </button>
-            <Button onClick={() => scrollToSection("contact")}>
+            <Button onClick={() => handleNavigation("contact")}>
               相談する
             </Button>
           </nav>
@@ -79,31 +115,31 @@ const Header = () => {
           <div className="md:hidden py-4 border-t border-border">
             <nav className="flex flex-col gap-4">
               <button
-                onClick={() => scrollToSection("services")}
+                onClick={() => handleNavigation("services")}
                 className="text-left text-foreground hover:text-primary transition-colors py-2"
               >
                 サービス内容
               </button>
               <button
-                onClick={() => scrollToSection("pricing")}
+                onClick={() => handleNavigation("pricing")}
                 className="text-left text-foreground hover:text-primary transition-colors py-2"
               >
                 料金
               </button>
               <button
-                onClick={() => scrollToSection("process")}
+                onClick={() => handleNavigation("process")}
                 className="text-left text-foreground hover:text-primary transition-colors py-2"
               >
                 手順
               </button>
               <button
-                onClick={() => scrollToSection("reviews")}
+                onClick={() => handleNavigation("reviews")}
                 className="text-left text-foreground hover:text-primary transition-colors py-2"
               >
                 利用者レビュー
               </button>
               <Button
-                onClick={() => scrollToSection("contact")}
+                onClick={() => handleNavigation("contact")}
                 className="w-full"
               >
                 相談する
