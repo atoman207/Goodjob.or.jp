@@ -1,6 +1,7 @@
 import { Box, Container, Button, Stack } from '@mui/material';
 import { Phone } from '@mui/icons-material';
-import heroImage from "@/assets/hero-bg.jpeg";
+import heroImagePC from "@/assets/hero_bg.jpg";
+import heroImageMobile from "@/assets/mhero_bg.png";
 
 const HeroSection = () => {
   return (
@@ -12,61 +13,71 @@ const HeroSection = () => {
         position: 'relative',
         width: '100%',
         bgcolor: '#ffffff',
-        py: { xs: 4, md: 6 },
+        overflow: 'hidden',
       }}
     >
-      <Container>
+      {/* Image Container - Responsive */}
+      <Box
+        sx={{
+          position: 'relative',
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        {/* Hero Image - PC/TABLET */}
         <Box
+          component="img"
+          src={heroImagePC}
+          alt="Hero Banner"
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            marginTop: '60px',
+            display: { xs: 'none', md: 'block' },
+            width: '1080px',
+            height: 'auto',
+            objectFit: 'cover',
+          }}
+        />
+
+        {/* Hero Image - Mobile */}
+        <Box
+          component="img"
+          src={heroImageMobile}
+          alt="Hero Banner"
+          sx={{
+            display: { xs: 'block', md: 'none' },
+            width: '100%',
+            height: 'auto',
+            objectFit: 'cover',
+          }}
+        />
+
+        {/* CTA Buttons Overlay */}
+        <Container
+          sx={{
+            position: 'absolute',
+            bottom: { xs: '20px', md: '40px' },
+            left: 0,
+            right: 0,
+            zIndex: 10,
           }}
         >
-          {/* Hero Image */}
           <Box
             sx={{
-              width: { xs: '100%', md: '1024px' },
-              maxWidth: '100%',
-              mb: { xs: 3, md: 4 },
               display: 'flex',
               justifyContent: 'center',
-            }}
-          >
-            <Box
-              component="img"
-              src={heroImage}
-              alt="Hero"
-              sx={{
-                width: '100%',
-                height: 'auto',
-                display: 'block',
-                objectFit: 'contain',
-              }}
-            />
-          </Box>
-
-          {/* CTA Buttons Container - Yellow Background */}
-          <Box
-            sx={{
-              width: { xs: '100%', md: '1024px' },
-              maxWidth: '100%',
-              bgcolor: '#facc15',
-              py: { xs: 3, md: 4 },
-              px: { xs: 2, md: 4 },
-              borderRadius: { xs: 0, md: 2 },
-              display: 'flex',
-              justifyContent: 'center',
+              width: '100%',
             }}
           >
             <Stack
               direction={{ xs: 'column', md: 'row' }}
-              spacing={{ xs: 2, sm: 3 }}
+              spacing={{ xs: 2, md: 3 }}
               sx={{
                 justifyContent: 'center',
                 alignItems: 'stretch',
                 width: '100%',
-                maxWidth: { xs: '100%', sm: '500px' },
+                maxWidth: { xs: '90%', sm: '500px', md: '600px' },
               }}
             >
               <Button
@@ -75,7 +86,6 @@ const HeroSection = () => {
                 target="_blank"
                 rel="noreferrer"
                 variant="contained"
-                color="secondary"
                 size="large"
                 fullWidth
                 sx={{
@@ -86,9 +96,13 @@ const HeroSection = () => {
                   minHeight: { xs: '48px', md: '56px' },
                   bgcolor: '#22c55e',
                   color: '#ffffff',
+                  boxShadow: '0 8px 24px rgba(34, 197, 94, 0.4)',
                   '&:hover': {
                     bgcolor: '#16a34a',
+                    boxShadow: '0 12px 32px rgba(34, 197, 94, 0.5)',
+                    transform: 'translateY(-2px)',
                   },
+                  transition: 'all 0.3s ease',
                 }}
                 startIcon={
                   <svg width={24} height={24} viewBox="0 0 24 24" fill="currentColor" style={{ flexShrink: 0 }}>
@@ -114,9 +128,13 @@ const HeroSection = () => {
                   minHeight: { xs: '48px', md: '56px' },
                   bgcolor: '#6b7280',
                   color: '#ffffff',
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.2)',
                   '&:hover': {
                     bgcolor: '#4b5563',
+                    boxShadow: '0 12px 32px rgba(0, 0, 0, 0.3)',
+                    transform: 'translateY(-2px)',
                   },
+                  transition: 'all 0.3s ease',
                 }}
                 startIcon={<Phone sx={{ flexShrink: 0 }} />}
               >
@@ -124,8 +142,8 @@ const HeroSection = () => {
               </Button>
             </Stack>
           </Box>
-        </Box>
-      </Container>
+        </Container>
+      </Box>
     </Box>
   );
 };

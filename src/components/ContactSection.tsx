@@ -1,6 +1,6 @@
 import { Box, Container, Typography, Button, Stack } from '@mui/material';
 import { Phone } from '@mui/icons-material';
-import contactBackground from "@/assets/contact.jpg";
+import contactImage from "@/assets/contact.jpg";
 
 const ContactSection = () => {
   return (
@@ -10,98 +10,77 @@ const ContactSection = () => {
       className="contact-section-custom"
       sx={{
         position: 'relative',
-        minHeight: { xs: '70vh', md: '80vh' },
-        py: { xs: 6, md: 0 },
-        overflow: 'hidden',
-        display: 'flex',
-        alignItems: 'stretch',
         width: '100%',
-        maxWidth: '100%',
+        bgcolor: '#ffffff',
+        py: { xs: 4, md: 6 },
       }}
     >
-      {/* Background Image */}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          width: '100%',
-          height: '100%',
-          backgroundImage: `url(${contactBackground})`,
-          backgroundSize: 'cover',
-          backgroundPosition: { xs: 'center', md: 'left center' },
-          backgroundRepeat: 'no-repeat',
-          zIndex: 0,
-        }}
-        aria-hidden="true"
-      />
-      
-      {/* Overlay for better text readability */}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          bgcolor: { xs: 'rgba(255, 255, 255, 0.85)', md: 'rgba(0, 0, 0, 0.3)' },
-          zIndex: 1,
-        }}
-        aria-hidden="true"
-      />
-
-      <Container sx={{ 
-        position: 'relative', 
-        zIndex: 2,
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: { xs: 'flex-start', md: 'flex-end' },
-        alignItems: 'center',
-        py: { xs: 4, md: 6 },
-      }}>
-        <Box sx={{ 
-          maxWidth: { xs: '100%', sm: '48rem' }, 
-          mx: 'auto', 
-          textAlign: 'center',
-          pt: { xs: 2, md: 0 },
-          pb: { xs: 4, md: 8 },
-          width: '100%',
-          px: { xs: 2, sm: 3 },
-        }}>
-          <Typography 
-            variant="h2" 
-            className="section-title"
-            sx={{ 
-              mb: { xs: 1.5, md: 2 },
-              fontSize: { xs: '1.75rem', sm: '2rem', md: '3.5rem', lg: '4rem' },
+      <Container>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            textAlign: 'center',
+          }}
+        >
+          {/* Heading */}
+          <Typography
+            variant="h2"
+            sx={{
+              mb: { xs: 1, md: 1.5 },
+              fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem', lg: '3rem' },
               fontWeight: 700,
-              color: { xs: '#001F3F', md: '#ffffff' },
-              textShadow: { xs: 'none', md: '2px 2px 8px rgba(0,0,0,0.5)' },
+              color: '#001F3F',
               lineHeight: 1.2,
             }}
           >
             まずは無料相談
           </Typography>
-          
-          <Typography 
-            variant="body1" 
-            sx={{ 
-              mb: { xs: 4, md: 6 },
-              fontSize: { xs: '0.9rem', sm: '1rem', md: '1.25rem', lg: '1.4rem' },
-              color: { xs: '#001F3F', md: '#ffffff' },
-              textShadow: { xs: 'none', md: '1px 1px 4px rgba(0,0,0,0.5)' },
+
+          {/* Subheading */}
+          <Typography
+            variant="body1"
+            sx={{
+              mb: { xs: 3, md: 4 },
+              fontSize: { xs: '0.875rem', sm: '1rem', md: '1.125rem' },
+              fontWeight: 400,
+              color: '#6b7280',
               lineHeight: 1.6,
             }}
           >
             LINEまたは電話でお気軽にご相談ください
           </Typography>
 
-          <Stack 
-            direction={{ xs: 'column', sm: 'row' }} 
-            spacing={{ xs: 2, sm: 3 }} 
-            sx={{ 
+          {/* Contact Image */}
+          <Box
+            sx={{
+              width: '100%',
+              maxWidth: '100%',
+              mb: { xs: 3, md: 4 },
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+          >
+            <Box
+              component="img"
+              src={contactImage}
+              alt="相談スタッフ"
+              sx={{
+                width: '100%',
+                height: 'auto',
+                display: 'block',
+                objectFit: 'contain',
+                maxWidth: { xs: '100%', md: '1200px' },
+              }}
+            />
+          </Box>
+
+          {/* CTA Buttons */}
+          <Stack
+            direction={{ xs: 'column', sm: 'row' }}
+            spacing={{ xs: 2, sm: 3 }}
+            sx={{
               justifyContent: 'center',
               alignItems: 'stretch',
               width: '100%',
@@ -114,7 +93,6 @@ const ContactSection = () => {
               target="_blank"
               rel="noreferrer"
               variant="contained"
-              color="secondary"
               size="large"
               fullWidth
               sx={{
@@ -123,6 +101,11 @@ const ContactSection = () => {
                 py: { xs: 1.25, sm: 1.5, md: 2 },
                 borderRadius: '9999px',
                 minHeight: { xs: '48px', md: '56px' },
+                bgcolor: '#22c55e',
+                color: '#ffffff',
+                '&:hover': {
+                  bgcolor: '#16a34a',
+                },
               }}
               startIcon={
                 <svg width={24} height={24} viewBox="0 0 24 24" fill="currentColor" style={{ flexShrink: 0 }}>
@@ -132,7 +115,7 @@ const ContactSection = () => {
             >
               LINEで相談
             </Button>
-            
+
             <Button
               component="a"
               href="/contact/phone"
