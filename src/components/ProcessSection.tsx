@@ -66,7 +66,7 @@ const ProcessSection = () => {
   ];
 
   return (
-    <section id="process" className="py-20 md:py-32 bg-white">
+    <section id="process" className="py-10 md:py-14 bg-white">
       <div className="container mx-auto px-4">
         <h2 className="section-title text-3xl md:text-4xl font-bold text-center mb-4">
           利用手順

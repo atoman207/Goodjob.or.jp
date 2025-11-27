@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import qaImage from "@/assets/QA.png";
 
 const FAQSection = () => {
   const faqs = [
@@ -50,11 +51,20 @@ const FAQSection = () => {
   ];
 
   return (
-    <section className="py-20 md:py-32 bg-gray-50">
+    <section className="py-10 md:py-14 bg-gray-50">
       <div className="container mx-auto px-4">
-        <h2 className="section-title text-3xl md:text-4xl font-bold text-center mb-4">
-          よくある質問
-        </h2>
+        <div className="flex items-center justify-center gap-4 mb-4">
+          <div className="flex-shrink-0">
+            <img
+              src={qaImage}
+              alt="よくある質問"
+              className="w-16 h-16 md:w-20 md:h-20 object-contain"
+            />
+          </div>
+          <h2 className="section-title text-3xl md:text-4xl font-bold">
+            よくある質問
+          </h2>
+        </div>
         <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
           お客様からよくいただく質問をまとめました
         </p>

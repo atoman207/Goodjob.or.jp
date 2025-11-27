@@ -12,6 +12,9 @@ import ContactLine from "./pages/ContactLine";
 import ContactPhone from "./pages/ContactPhone";
 import ContactMail from "./pages/ContactMail";
 import MediaInquiry from "./pages/MediaInquiry";
+import NewsDetail from "./pages/NewsDetail";
+import NewsItemDetail from "./pages/NewsItemDetail";
+import AdminPage from "./pages/AdminPage";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +32,9 @@ const App = () => (
             <Route path="/contact/phone" element={<ContactPhone />} />
             <Route path="/contact/mail" element={<ContactMail />} />
             <Route path="/media/inquiry" element={<MediaInquiry />} />
+            <Route path="/news" element={<NewsDetail />} />
+            <Route path="/news/:id" element={<NewsItemDetail />} />
+            <Route path="/addinfo" element={<AdminPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

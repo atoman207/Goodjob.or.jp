@@ -12,6 +12,7 @@ import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import ChatbotWidget from "@/components/ChatbotWidget";
 import MediaSection from "@/components/MediaSection";
+import NewsSection from "@/components/NewsSection";
 
 const Index = () => {
   return (
@@ -20,6 +21,7 @@ const Index = () => {
       <main>
         <HeroSection />
         <MediaSection />
+        <NewsSection />
         <WorryandIntroduction />
         <TrustSection />
         <ServicesSection />

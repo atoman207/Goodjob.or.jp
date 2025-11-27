@@ -8,10 +8,11 @@ const concerns = [
   "感情的に怒られそうで不安",
   "手続きや流れが分からず不安が募る",
   "話をねじ曲げられて不利な状況にされそう",
-  "「人手が足りない」と責められそうで怖い",
+  "人手が足りないと 責められそうで怖い",
   "強引に退職日を後ろ倒しにされそう",
 ];
 
+const highlightPhrase = "「人手が足りない」";
 const guardianDescription = [
   "東京中央労働組合とは、働く人の権利を守り、困りごとやトラブルに対して相談・サポートを行う労働組合です。",
   "労働組合は、労働者が安心して働ける環境を整えるために設けられており、法律上、会社に対して団体交渉を行う権利が認められています。",
@@ -24,7 +25,7 @@ const guardianDescription = [
 const WorryandIntroduction = () => {
   return (
     <>
-      <section id="worry" className="worry-section py-16 md:py-24 bg-white">
+      <section id="worry" className="worry-section py-8 md:py-10 bg-white">
         <div className="container mx-auto px-4">
           <div className="worry-section__wrapper">
             {/* Headline and Image Row */}
@@ -40,12 +41,30 @@ const WorryandIntroduction = () => {
               <div className="worry-section__panel">
                 <p className="worry-section__panel-title">ひとりで悩んでいませんか？</p>
                 <ul className="worry-section__list">
-                  {concerns.map((item, index) => (
+                {concerns.map((item, index) => {
+                  if (!item.includes(highlightPhrase)) {
+                    return (
+                      <li key={index} className="worry-section__item">
+                        <CheckCircle2 className="worry-section__icon" aria-hidden="true" />
+                        <span>{item}</span>
+                      </li>
+                    );
+                  }
+
+                  const before = item.substring(0, item.indexOf(highlightPhrase));
+                  const after = item.substring(item.indexOf(highlightPhrase) + highlightPhrase.length);
+
+                  return (
                     <li key={index} className="worry-section__item">
                       <CheckCircle2 className="worry-section__icon" aria-hidden="true" />
-                      <span>{item}</span>
+                      <span>
+                        {before}
+                        <span style={{ color: "#ef4444" }}>{highlightPhrase}</span>
+                        {after}
+                      </span>
                     </li>
-                  ))}
+                  );
+                })}
                 </ul>
               </div>
             </div>

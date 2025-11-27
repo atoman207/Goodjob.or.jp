@@ -107,7 +107,7 @@ const MediaSection = () => {
   const infiniteLogos = useMemo(() => createInfiniteLogos(shuffledLogos, 3), [shuffledLogos]);
 
   return (
-    <section className="media-section py-16 md:py-24 bg-white">
+    <section className="media-section py-10 md:py-14 bg-white">
       <div className="container mx-auto px-4">
         <div className="media-section__header mb-10">
           <div className="media-section__title-group">

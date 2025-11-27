@@ -1,5 +1,12 @@
 /* Mobile Responsive Styles (max-width: 425px, 640px, 767px, 768px) */
 
+/* Global titles */
+.section-title {
+  color: #0f1d3d !important;
+  font-family: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "MS PMincho", serif;
+  letter-spacing: 0.04em;
+}
+
 /* Worry Section - Mobile (425px) */
 @media (max-width: 425px) {
   .worry-section__headline-block {
@@ -12,6 +19,7 @@
     font-size: 0.95rem !important;
     white-space: normal;
     line-height: 1.4;
+    color: #0f1d3d !important;
   }
 
   .worry-section__headline-image {
@@ -39,6 +47,7 @@
     white-space: normal;
     font-size: clamp(0.85rem, 1.8vw, 1.1rem) !important;
     width: 100%;
+    color: #0f1d3d !important;
   }
 
   .guardian-hero__image-wrapper {
@@ -180,7 +189,7 @@
   .worry-section__headline {
     font-size: 1.4rem !important;
     line-height: 1.3 !important;
-    color: #1e3a5f !important;
+    color: #0f1d3d !important;
   }
 
   .worry-section__headline-image {
@@ -208,7 +217,7 @@
 
   .guardian-hero__title {
     font-size: 1.5rem !important;
-    color: #1e3a5f !important;
+    color: #0f1d3d !important;
   }
 
   .guardian-panel__title {
@@ -228,19 +237,32 @@
     font-size: 0.875rem !important;
   }
 
-  .comparison-table__head-item,
-  .comparison-table__cell {
-    font-size: clamp(0.65rem, 1.2vw, 0.75rem) !important;
-    padding: 0.6rem 0.4rem !important;
-    line-height: 1.5 !important;
-  }
-
   .comparison-table__head {
-    grid-template-columns: 1fr repeat(3, 1fr);
+    grid-template-columns: 1.15fr repeat(4, 0.9fr);
   }
 
   .comparison-table__row {
-    grid-template-columns: 1fr repeat(3, 1fr);
+    grid-template-columns: 1.15fr repeat(4, 0.9fr);
+  }
+
+  .comparison-table {
+    overflow-x: hidden;
+  }
+
+  .comparison-table__inner {
+    min-width: 100%;
+  }
+
+  .comparison-table__head-item,
+  .comparison-table__cell {
+    font-size: 0.8rem !important;
+    padding: 0.55rem 0.35rem !important;
+    line-height: 1.35 !important;
+    text-align: center !important;
+  }
+
+  .comparison-table__cell {
+    gap: 0.4rem !important;
   }
 
   /* Services Section - Mobile */
@@ -332,7 +354,7 @@
 
   .worry-section__headline {
     font-size: 1.5rem !important;
-    color: #1e3a5f !important;
+    color: #0f1d3d !important;
   }
 
   .section-title {
@@ -341,7 +363,7 @@
 
   .guardian-hero__title {
     font-size: 1.6rem !important;
-    color: #1e3a5f !important;
+    color: #0f1d3d !important;
   }
 
   .trust-section__image {
@@ -362,10 +384,12 @@
 
   .worry-section__headline {
     font-size: 1.3rem !important;
+    color: #0f1d3d !important;
   }
 
   .guardian-hero__title {
     font-size: 1.4rem !important;
+    color: #0f1d3d !important;
   }
 }
 
@@ -378,18 +402,28 @@
 
   .strength-item__image-wrapper {
     width: 100%;
-    height: auto;
-    max-height: 300px;
+    max-width: 100%;
+    height: clamp(180px, 55vw, 240px);
+    border-radius: 16px;
   }
 
   .strength-item__image {
     width: 100%;
-    height: auto;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
+    border-radius: inherit;
   }
 
   .strength-item__content {
     text-align: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .process-step__image-wrapper {
+    width: 100%;
+    height: clamp(170px, 52vw, 230px);
+    margin-bottom: 1rem;
   }
 }
 

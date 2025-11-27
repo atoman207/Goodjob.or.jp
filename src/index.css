@@ -509,10 +509,10 @@ All colors MUST be HSL.
   }
 
   .worry-section__headline {
-    font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-family: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
     font-size: clamp(1rem, 2vw, 1.4rem);
     font-weight: 700;
-    color: #1e3a5f;
+    color: #0f1d3d;
     line-height: 1.5;
     white-space: nowrap;
     flex: 0 1 auto;
@@ -653,10 +653,10 @@ All colors MUST be HSL.
 }
 
 .guardian-hero__title {
-  font-family: "Sawarabi Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-family: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
   font-size: clamp(0.9rem, 1.8vw, 1.3rem);
   font-weight: 700;
-  color: #1e3a5f;
+  color: #0f1d3d;
   line-height: 1.5;
   margin: 0 auto;
   white-space: nowrap;
@@ -759,33 +759,43 @@ All colors MUST be HSL.
 
 .comparison-table {
   background: #fff;
-  border-radius: 1.75rem;
   border: 1px solid #e5e7eb;
   box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
-  overflow: hidden;
+  overflow-x: auto;
   margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
+  border-radius: 12px;
+}
+
+.comparison-table__inner {
+  min-width: 640px;
+  width: max-content;
 }
 
 .comparison-table__head {
   display: grid;
-  grid-template-columns: 1.2fr repeat(3, 1fr);
+  grid-template-columns: 1.4fr repeat(4, 1fr);
+}
+
+.comparison-table__head-item,
+.comparison-table__cell {
+  font-family: "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;
+  font-size: clamp(0.9rem, 1vw + 0.6rem, 1rem);
+  color: #000000;
 }
 
 .comparison-table__head-item {
   padding: 1.1rem;
-  font-family: "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;
   font-weight: 700;
-  font-size: clamp(0.9rem, 1.8vw, 1.05rem);
   text-align: center;
-  background: #f9fafb;
-  color: #111827;
+  background: #f0f4f8;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.6);
 }
 
 .comparison-table__head-item--label {
-  background: transparent;
+  background: #e2e8f0;
   justify-content: center;
   padding-left: 0;
 }
@@ -795,30 +805,28 @@ All colors MUST be HSL.
   background: #ffffff;
 }
 
-.comparison-col--guardian {
-  background: #ffffff !important;
-  color: #111827;
-  border: 3px solid #001F3F;
-  position: relative;
-  border-left: 3px solid #001F3F;
-  border-right: 3px solid #001F3F;
+.comparison-col--jobs {
+  background: #df9222 !important;
+  color: #000000;
+  font-weight: 700;
 }
 
-.comparison-table__head .comparison-col--guardian {
-  border-top: 3px solid #001F3F;
-  border-left: 3px solid #001F3F;
-  border-right: 3px solid #001F3F;
-  border-bottom: 3px solid #001F3F;
+.comparison-col--general {
+  background: #f3dfb7 !important;
+  color: #000000;
+  font-weight: 700;
 }
 
-.comparison-col--private {
-  background: #ffffff !important;
-  color: #111827;
+.comparison-col--labor {
+  background: #f8e8c9 !important;
+  color: #000000;
+  font-weight: 700;
 }
 
 .comparison-col--lawyer {
-  background: #ffffff !important;
-  color: #111827;
+  background: #fff1d6 !important;
+  color: #000000;
+  font-weight: 700;
 }
 
 .comparison-table__body {
@@ -827,43 +835,59 @@ All colors MUST be HSL.
 
 .comparison-table__row {
   display: grid;
-  grid-template-columns: 1.2fr repeat(3, 1fr);
+  grid-template-columns: 1.4fr repeat(4, 1fr);
   border-top: 1px solid #e5e7eb;
-}
-
-.comparison-table__row .comparison-table__cell:first-child {
   border-right: 1px solid #e5e7eb;
 }
 
-.comparison-table__row .comparison-col--guardian {
-  border-left: 3px solid #001F3F;
-  border-right: 3px solid #001F3F;
-  border-top: 3px solid #001F3F;
-  border-bottom: 3px solid #001F3F;
+.comparison-table__row .comparison-col--jobs {
+  background: #fff7e6;
+  font-weight: 600;
+  color: #000000;
+  border-left: 2px solid #f59e0b;
+  border-right: 2px solid #f59e0b;
 }
 
-.comparison-table__row:last-child .comparison-col--guardian {
-  border-bottom: 3px solid #001F3F;
+.comparison-table__row:first-child .comparison-col--jobs {
+  border-top: 2px solid #f59e0b;
+}
+
+.comparison-table__row:last-child .comparison-col--jobs {
+  border-bottom: 2px solid #f59e0b;
+}
+
+.comparison-table__row .comparison-col--general,
+.comparison-table__row .comparison-col--labor,
+.comparison-table__row .comparison-col--lawyer {
+  background: #fffaf1;
+  color: #000000;
 }
 
 .comparison-table__cell {
   padding: 1rem 1.25rem;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 0.55rem;
-  font-family: "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;
-  font-size: clamp(0.75rem, 1.5vw, 0.95rem);
-  color: #374151;
-  text-align: left;
+  justify-content: center;
+  gap: 0.65rem;
+  text-align: center;
   line-height: 1.6;
 }
 
 .comparison-table__cell--label {
-  justify-content: flex-start;
   font-weight: 600;
-  color: #111827;
-  background: #f9fafb;
+  color: #000000;
+  background: #e7edf5;
+}
+
+.comparison-table__cell--icon span:not(.sr-only) {
+  display: none;
+}
+
+.comparison-note {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #6b7280;
+  text-align: right;
 }
 
 .comparison-indicator {
@@ -881,6 +905,17 @@ All colors MUST be HSL.
 
 .comparison-indicator--bad {
   color: #ef4444;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 
 .comparison-highlight {
@@ -1823,34 +1858,35 @@ All colors MUST be HSL.
     transform: scale(1.18) rotate(-8deg);
   }
 
+.process-step__image-wrapper {
+  width: 100%;
+  max-width: 320px;
+  height: clamp(160px, 20vw, 220px);
+  overflow: hidden;
+  border-radius: 16px;
+  background: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
   .process-step__image-wrapper {
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-    border-radius: 12px;
-    background: #f9fafb;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
+    width: 320px;
+    height: clamp(180px, 22vw, 240px);
+    margin-bottom: 0;
+    flex-shrink: 0;
   }
+}
 
-  @media (min-width: 768px) {
-    .process-step__image-wrapper {
-      width: 300px;
-      height: 250px;
-      margin-bottom: 0;
-      flex-shrink: 0;
-    }
-  }
-
-  .process-step__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-    border-radius: 12px;
-  }
+.process-step__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  border-radius: 16px;
+}
 
   .process-step:hover .process-step__image {
     transform: scale(1.05);
@@ -2042,9 +2078,11 @@ All colors MUST be HSL.
   }
 }
 
-/* Section Titles - Navy Blue */
+/* Section Titles - Unified font/color */
 .section-title {
-  color: #1e3a5f !important;
+  color: #0f1d3d !important;
+  font-family: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "MS PMincho", serif;
+  letter-spacing: 0.04em;
 }
 
 /* Tablet and Desktop - Larger Sizes */
@@ -2143,18 +2181,21 @@ All colors MUST be HSL.
 
 .strength-item__image-wrapper {
   flex-shrink: 0;
-  width: clamp(200px, 30vw, 300px);
-  height: clamp(200px, 30vw, 300px);
+  width: clamp(240px, 32vw, 360px);
+  height: clamp(160px, 22vw, 220px);
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 18px;
+  background: #f5f7fb;
+  overflow: hidden;
 }
 
 .strength-item__image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  border-radius: 8px;
+  object-fit: contain;
+  border-radius: inherit;
 }
 
 .strength-item__content {
@@ -2394,7 +2435,7 @@ All colors MUST be HSL.
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.15;
+  opacity: 0.45;
   z-index: 0;
 }
 
