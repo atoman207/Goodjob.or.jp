@@ -53,20 +53,17 @@ const CTAButtons = ({
       size={buttonSize}
       fullWidth={fullWidthButtons}
       sx={{
-        fontSize: { xs: '0.9rem', sm: '1rem', md: '1.1rem' },
-        px: { xs: 3, sm: 4, md: 6 },
-        py: { xs: 1.25, sm: 1.5, md: 2 },
+        fontSize: { xs: '0.75rem', sm: '0.875rem', md: '1rem' },
+        px: { xs: 2, sm: 3, md: 4 },
+        py: { xs: 1, sm: 1.25, md: 1.5 },
         borderRadius: '9999px',
-        minHeight: { xs: '48px', md: '56px' },
+        minHeight: { xs: '40px', md: '48px' },
         bgcolor: '#22c55e',
         color: '#ffffff',
-        boxShadow: '0 8px 24px rgba(34, 197, 94, 0.4)',
+        boxShadow: '0 4px 12px rgba(34, 197, 94, 0.3)',
         '&:hover': {
           bgcolor: '#16a34a',
-          boxShadow: '0 12px 32px rgba(34, 197, 94, 0.5)',
-          transform: 'translateY(-2px)',
         },
-        transition: 'all 0.3s ease',
         ...lineButtonSx,
       }}
       startIcon={<LineIcon />}
@@ -83,20 +80,17 @@ const CTAButtons = ({
       size={buttonSize}
       fullWidth={fullWidthButtons}
       sx={{
-        fontSize: { xs: '0.9rem', sm: '1rem', md: '1.1rem' },
-        px: { xs: 3, sm: 4, md: 6 },
-        py: { xs: 1.25, sm: 1.5, md: 2 },
+        fontSize: { xs: '0.75rem', sm: '0.875rem', md: '1rem' },
+        px: { xs: 2, sm: 3, md: 4 },
+        py: { xs: 1, sm: 1.25, md: 1.5 },
         borderRadius: '9999px',
-        minHeight: { xs: '48px', md: '56px' },
+        minHeight: { xs: '40px', md: '48px' },
         bgcolor: '#6b7280',
         color: '#ffffff',
-        boxShadow: '0 8px 24px rgba(0, 0, 0, 0.2)',
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
         '&:hover': {
           bgcolor: '#4b5563',
-          boxShadow: '0 12px 32px rgba(0, 0, 0, 0.3)',
-          transform: 'translateY(-2px)',
         },
-        transition: 'all 0.3s ease',
         ...phoneButtonSx,
       }}
       startIcon={<Phone sx={{ flexShrink: 0 }} />}

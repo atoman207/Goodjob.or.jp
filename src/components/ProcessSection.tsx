@@ -66,7 +66,7 @@ const ProcessSection = () => {
   ];
 
   return (
-    <section id="process" className="py-10 md:py-14 bg-white">
+    <section id="process" className="py-6 md:py-10 bg-white">
       <div className="container mx-auto px-4">
         <h2 className="section-title text-3xl md:text-4xl font-bold text-center mb-4">
           利用手順
@@ -76,10 +76,10 @@ const ProcessSection = () => {
         </p>
 
         <div className="max-w-4xl mx-auto">
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-3 md:gap-4">
             {steps.map((step, index) => (
               <div key={index} className="relative">
-                <div className="process-step group bg-card rounded-3xl p-6 border border-border/70 overflow-hidden flex flex-col md:flex-row md:items-center md:gap-6">
+                <div className="process-step group bg-card rounded p-6 border border-border/70 overflow-hidden flex flex-col md:flex-row md:items-center md:gap-6">
                   <div className={`process-step__accent ${step.accent}`} aria-hidden="true" />
                   
                   {/* Image Section */}
@@ -101,31 +101,30 @@ const ProcessSection = () => {
                         {step.number}
                       </div>
                     </div>
-                    <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
+                    <h3 className="text-lg md:text-xl font-bold mb-2 flex items-center gap-2">
                       {step.title}
                     </h3>
-                    <p className="text-primary font-semibold mb-3 flex items-center gap-2">
+                    <p className="text-primary font-semibold mb-3 flex items-center gap-2 text-sm md:text-base">
                       <span className="process-step__indicator" aria-hidden="true" />
                       {step.description}
                     </p>
-                    <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                    <p className="text-xs md:text-sm text-muted-foreground mb-4 leading-relaxed">
                       {step.detail}
                     </p>
-                    <p className="text-xs text-muted-foreground border-t border-border/60 pt-3 flex items-center gap-2">
+                    <p className="text-[10px] md:text-xs text-muted-foreground border-t border-border/60 pt-3 flex items-center gap-2">
                       <BsArrowRightShort className="process-step__time-icon" aria-hidden="true" />
                       {step.time}
                     </p>
                   </div>
                 </div>
                 {index < steps.length - 1 && (
-                  <div className="flex justify-center my-4">
-                    <div className="process-step__triangle">
+                  <div className="flex justify-center my-0">
+                    <div className="process-step__triangle w-1/2 aspect-[10/3]">
                       <svg
-                        width="32"
-                        height="32"
                         viewBox="0 0 24 24"
                         fill="none"
-                        className="text-yellow-500"
+                        className="text-yellow-500 w-full h-full"
+                        preserveAspectRatio="none"
                       >
                         <path
                           d="M12 16L6 10H18L12 16Z"

@@ -3,7 +3,6 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Loader2 } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
 
 interface NewsItem {
   id: number;
@@ -11,14 +10,14 @@ interface NewsItem {
   performance_report: string;
   retirement_status: string;
   details: string;
-  attachments?: string;
-  other?: string;
+  attachments?: string | null;
+  other?: string | null;
 }
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const ITEMS_PER_PAGE = 5;
 
 const NewsDetail = () => {
-  const navigate = useNavigate();
+  const [allNews, setAllNews] = useState<NewsItem[]>([]);
   const [news, setNews] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -26,40 +25,53 @@ const NewsDetail = () => {
   const [loadingMore, setLoadingMore] = useState(false);
 
   useEffect(() => {
-    fetchNews(1);
-  }, []);
-
-  const fetchNews = async (pageNum: number, append = false) => {
-    try {
-      if (pageNum === 1) {
+    const fetchAllNews = async () => {
+      try {
         setLoading(true);
-      } else {
-        setLoadingMore(true);
-      }
-
-      const response = await fetch(`${API_URL}/api/news?page=${pageNum}&limit=5`);
-      const data = await response.json();
-      
-      if (data.success) {
-        if (append) {
-          setNews(prev => [...prev, ...data.data]);
+        
+        // First try localStorage (if admin has made changes)
+        const localData = localStorage.getItem('news-data');
+        let data: NewsItem[];
+        
+        if (localData) {
+          data = JSON.parse(localData);
         } else {
-          setNews(data.data);
+          const response = await fetch('/news-data.json');
+          data = await response.json();
         }
-        setHasMore(data.pagination.page < data.pagination.totalPages);
+        
+        // Sort by date descending
+        const sorted = data.sort((a, b) => {
+          const dateA = a.date.replace(/\./g, '');
+          const dateB = b.date.replace(/\./g, '');
+          return dateB.localeCompare(dateA);
+        });
+        setAllNews(sorted);
+        setNews(sorted.slice(0, ITEMS_PER_PAGE));
+        setHasMore(sorted.length > ITEMS_PER_PAGE);
+      } catch (error) {
+        console.error('Error fetching news:', error);
+      } finally {
+        setLoading(false);
       }
-    } catch (error) {
-      console.error('Error fetching news:', error);
-    } finally {
-      setLoading(false);
-      setLoadingMore(false);
-    }
-  };
+    };
+
+    fetchAllNews();
+  }, []);
 
   const handleLoadMore = () => {
     const nextPage = page + 1;
-    setPage(nextPage);
-    fetchNews(nextPage, true);
+    const startIndex = nextPage * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    const newItems = allNews.slice(startIndex, endIndex);
+    
+    if (newItems.length > 0) {
+      setNews(prev => [...prev, ...newItems]);
+      setPage(nextPage);
+      setHasMore(endIndex < allNews.length);
+    } else {
+      setHasMore(false);
+    }
   };
 
   const formatDate = (dateStr: string) => {
@@ -83,10 +95,10 @@ const NewsDetail = () => {
           <div className="max-w-4xl mx-auto">
             <div className="mb-8">
               <Button variant="ghost" asChild className="mb-4">
-                <Link to="/">
+                <a href="/" target="_blank" rel="noopener noreferrer">
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   ホームに戻る
-                </Link>
+                </a>
               </Button>
               <h1 className="text-3xl md:text-4xl font-bold mb-2">News</h1>
               <p className="text-gray-600">退職代行実績の詳細をご覧いただけます</p>
@@ -106,8 +118,8 @@ const NewsDetail = () => {
                 {news.map((item) => (
                   <article
                     key={item.id}
-                    className="bg-card border border-border rounded-lg p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow cursor-pointer"
-                    onClick={() => navigate(`/news/${item.id}`)}
+                    className="bg-card border border-border rounded p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+                    onClick={() => window.open(`/news/${item.id}`, '_blank')}
                   >
                     <div className="mb-6">
                       <h2 className="text-2xl md:text-3xl font-bold mb-4 text-gray-900">

@@ -71,7 +71,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           textTransform: 'none',
-          borderRadius: '0.5rem',
+          borderRadius: '0.25rem',
           fontWeight: 600,
         },
       },

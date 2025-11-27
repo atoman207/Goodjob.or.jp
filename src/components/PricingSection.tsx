@@ -3,7 +3,7 @@ import pricingImageMobile from "@/assets/mprice.png";
 
 const PricingSection = () => {
   return (
-    <section id="pricing" className="pricing-section-custom py-10 md:py-14 bg-white">
+    <section id="pricing" className="pricing-section-custom py-6 md:py-10 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto relative">
           {/* PC / Tablet image */}
@@ -25,7 +25,7 @@ const PricingSection = () => {
             <a href="/contact/line" target="_blank" rel="noreferrer">
               <button
                 type="button"
-                className="inline-flex items-center justify-center rounded-lg bg-emerald-500 px-6.5
+                className="inline-flex items-center justify-center rounded bg-emerald-500 px-6.5
                  py-1 md:px-5 md:py-0.9 text-[1.35rem] md:text-[1.2rem] font-bold text-white shadow-md 
                  hover:bg-emerald-600 hover:shadow-lg transition-all duration-200 whitespace-nowrap"
               >

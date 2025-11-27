@@ -50,6 +50,7 @@ const HeroSection = () => {
             width: '100%',
             height: 'auto',
             objectFit: 'cover',
+            marginTop: { xs: '60px', md: 0 },
           }}
         />
 

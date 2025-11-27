@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -11,11 +11,9 @@ interface NewsItem {
   performance_report: string;
   retirement_status: string;
   details: string;
-  attachments?: string;
-  other?: string;
+  attachments?: string | null;
+  other?: string | null;
 }
-
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 const NewsItemDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -34,20 +32,27 @@ const NewsItemDetail = () => {
 
       try {
         setLoading(true);
-        const response = await fetch(`${API_URL}/api/news/${id}`);
         
-        if (!response.ok) {
-          if (response.status === 404) {
-            throw new Error('ニュースが見つかりませんでした');
+        // First try localStorage (if admin has made changes)
+        const localData = localStorage.getItem('news-data');
+        let data: NewsItem[];
+        
+        if (localData) {
+          data = JSON.parse(localData);
+        } else {
+          const response = await fetch('/news-data.json');
+          if (!response.ok) {
+            throw new Error('ニュースデータの読み込みに失敗しました');
           }
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+          data = await response.json();
         }
 
-        const data = await response.json();
-        if (data.success && data.data) {
-          setNews(data.data);
+        const newsItem = data.find(item => item.id === parseInt(id));
+        
+        if (newsItem) {
+          setNews(newsItem);
         } else {
-          throw new Error(data.error || 'ニュースの取得に失敗しました');
+          throw new Error('ニュースが見つかりませんでした');
         }
       } catch (error: any) {
         console.error('Error fetching news item:', error);
@@ -98,14 +103,14 @@ const NewsItemDetail = () => {
           <div className="container mx-auto px-4 py-12">
             <div className="max-w-4xl mx-auto">
               <Button variant="ghost" asChild className="mb-4">
-                <Link to="/news">
+                <a href="/news" target="_blank" rel="noopener noreferrer">
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   ニュース一覧に戻る
-                </Link>
+                </a>
               </Button>
-              <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+              <div className="bg-red-50 border border-red-200 rounded p-6 text-center">
                 <p className="text-red-600 mb-4">{error || 'ニュースが見つかりませんでした'}</p>
-                <Button onClick={() => navigate('/news')} variant="outline">
+                <Button onClick={() => window.open('/news', '_blank')} variant="outline">
                   ニュース一覧に戻る
                 </Button>
               </div>
@@ -125,14 +130,14 @@ const NewsItemDetail = () => {
           <div className="max-w-4xl mx-auto">
             <div className="mb-6 md:mb-8">
               <Button variant="ghost" asChild className="mb-4">
-                <Link to="/news">
+                <a href="/news" target="_blank" rel="noopener noreferrer">
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   ニュース一覧に戻る
-                </Link>
+                </a>
               </Button>
             </div>
 
-            <article className="bg-card border border-border rounded-lg p-4 md:p-6 lg:p-8 shadow-sm">
+            <article className="bg-card border border-border rounded p-4 md:p-6 lg:p-8 shadow-sm">
               <div className="mb-6">
                 <h1 className="text-2xl md:text-3xl font-bold mb-4 text-gray-900">
                   {formatDate(news.date)}
@@ -185,10 +190,10 @@ const NewsItemDetail = () => {
 
             <div className="mt-6 text-center">
               <Button variant="outline" asChild>
-                <Link to="/news">
+                <a href="/news" target="_blank" rel="noopener noreferrer">
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   ニュース一覧に戻る
-                </Link>
+                </a>
               </Button>
             </div>
           </div>

@@ -1,73 +1,77 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import type { IconType } from "react-icons";
-import { FaPhoneAlt, FaComments, FaBalanceScaleLeft, FaUserGraduate, FaPeopleCarry } from "react-icons/fa";
-import { FaArrowTrendUp } from "react-icons/fa6";
-import { PiArrowBendUpRightBold } from "react-icons/pi";
+import { FaPhoneAlt, FaComments } from "react-icons/fa";
+import { FaBalanceScaleLeft, FaPeopleCarry } from "react-icons/fa";
+import { FaUserGraduate, FaArrowTrendUp } from "react-icons/fa6";
 
 const ServicesSection = () => {
-  const services: {
-    Icon: IconType;
-    Accent: IconType;
-    title: string;
-    description: string;
-    accentClass: string;
-  }[] = [
+  const services = [
     {
-      Icon: FaPhoneAlt,
-      Accent: FaComments,
       title: "退職連絡代行",
-      description:
-        "あなたに代わって会社へ退職の意思を伝えます。面倒な手続きや気まずい会話は一切不要です。",
-      accentClass: "service-card__accent--lime",
+      description: "あなたに代わって会社へ退職の意思を伝えます。面倒な手続きや気まずい会話は一切不要です。",
+      icon: FaPhoneAlt,
+      subIcon: FaComments,
+      link: "/service/retirement-contact",
     },
     {
-      Icon: FaBalanceScaleLeft,
-      Accent: FaPeopleCarry,
-      title: "交渉対応",
-      description:
-        "未払い賃金や有給消化など、労働組合として会社と交渉を行います。法的根拠に基づいた対応で安心です。",
-      accentClass: "service-card__accent--blue",
+      title: "会社との交渉対応",
+      description: "未払い賃金や有給消化など、労働組合として会社と交渉を行います。法的根拠に基づいた対応で安心です。",
+      icon: FaBalanceScaleLeft,
+      subIcon: FaPeopleCarry,
+      link: "/service/negotiation",
     },
     {
-      Icon: FaUserGraduate,
-      Accent: FaArrowTrendUp,
       title: "転職支援",
-      description:
-        "退職後の新しいキャリアをサポート。提携する転職エージェントを通じて次のステップをサポートします。",
-      accentClass: "service-card__accent--amber",
+      description: "退職後の新しいキャリアをサポート。提携する転職エージェントを通じて次のステップをサポートします。",
+      icon: FaUserGraduate,
+      subIcon: FaArrowTrendUp,
+      link: "/service/job-change",
     },
   ];
 
   return (
-    <section id="services" className="py-10 md:py-14 bg-white">
+    <section id="services" className="py-6 md:py-10 bg-background">
       <div className="container mx-auto px-4">
         <h2 className="section-title text-3xl md:text-4xl font-bold text-center mb-4">
           サービス内容
         </h2>
-        <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
-          退職から転職まで、トータルでサポートします
+        <p className="text-center text-muted-foreground mb-8 md:mb-12 max-w-2xl mx-auto">
+          退職に関する様々なサポートをご提供いたします
         </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className="service-card group bg-card rounded-3xl p-8 border border-border/70 relative overflow-hidden"
-            >
-              <div className={`service-card__halo ${service.accentClass}`} aria-hidden="true" />
-              <div className="service-card__icon-ring">
-                <span className="service-card__pulse" aria-hidden="true" />
-                <service.Icon className="service-card__icon-main" aria-hidden="true" />
-                <service.Accent className="service-card__icon-accent" aria-hidden="true" />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          {services.map((service, index) => {
+            const IconComponent = service.icon;
+            const SubIconComponent = service.subIcon;
+            
+            return (
+              <div
+                key={index}
+                className="bg-card border border-border rounded p-6 md:p-8 shadow-sm hover:shadow-md md:hover:shadow-md transition-all duration-300 flex flex-col mobile-card-hover"
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="relative flex-shrink-0">
+                    <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                      <IconComponent className="w-7 h-7 md:w-8 md:h-8 text-primary" />
+                      <SubIconComponent className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary absolute -bottom-1 -right-1" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-bold text-gray-900">
+                    {service.title}
+                  </h3>
+                </div>
+                
+                <p className="text-sm md:text-base text-gray-700 mb-6 leading-relaxed flex-grow">
+                  {service.description}
+                </p>
+                
+                <Button asChild className="w-full">
+                  <Link to={service.link}>
+                    詳しく見る
+                  </Link>
+                </Button>
               </div>
-              <h3 className="text-xl font-bold mb-4">{service.title}</h3>
-              <p className="text-muted-foreground mb-6">{service.description}</p>
-              <Button variant="link" className="service-card__cta p-0 h-auto text-primary">
-                詳細を見る
-                <PiArrowBendUpRightBold className="service-card__cta-arrow" aria-hidden="true" />
-              </Button>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
@@ -75,3 +79,4 @@ const ServicesSection = () => {
 };
 
 export default ServicesSection;
+

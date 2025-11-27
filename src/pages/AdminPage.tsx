@@ -32,8 +32,10 @@ interface NewsItem {
   performance_report: string;
   retirement_status: string;
   details: string;
-  attachments?: string;
-  other?: string;
+  attachments?: string | null;
+  other?: string | null;
+  created_at?: string;
+  updated_at?: string | null;
 }
 
 interface PaginationInfo {
@@ -43,11 +45,11 @@ interface PaginationInfo {
   totalPages: number;
 }
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 const ITEMS_PER_PAGE = 10;
 
 const AdminPage = () => {
   const [news, setNews] = useState<NewsItem[]>([]);
+  const [allNews, setAllNews] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
@@ -73,30 +75,44 @@ const AdminPage = () => {
   });
 
   useEffect(() => {
-    fetchNews(currentPage);
-  }, [currentPage]);
+    fetchAllNews();
+  }, []);
 
-  const fetchNews = async (page: number = 1) => {
+  useEffect(() => {
+    updatePagination();
+  }, [currentPage, allNews]);
+
+  const fetchAllNews = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${API_URL}/api/news?page=${page}&limit=${ITEMS_PER_PAGE}`);
       
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-      }
+      // First try to load from localStorage (if admin has made changes)
+      const localData = localStorage.getItem('news-data');
+      let data: NewsItem[];
       
-      const data = await response.json();
-      if (data.success) {
-        setNews(data.data);
-        if (data.pagination) {
-          setPagination(data.pagination);
-        }
+      if (localData) {
+        data = JSON.parse(localData);
       } else {
-        throw new Error(data.error || 'Failed to fetch news');
+        // Otherwise load from JSON file
+        const response = await fetch('/news-data.json');
+        if (!response.ok) {
+          throw new Error('ニュースデータの読み込みに失敗しました');
+        }
+        data = await response.json();
       }
+      
+      // Sort by date descending
+      const sorted = data.sort((a, b) => {
+        const dateA = a.date.replace(/\./g, '');
+        const dateB = b.date.replace(/\./g, '');
+        return dateB.localeCompare(dateA);
+      });
+      
+      setAllNews(sorted);
+      updatePagination();
     } catch (error: any) {
       console.error('Error fetching news:', error);
-      const errorMessage = error.message || "ニュースの取得に失敗しました。サーバーが起動しているか確認してください。";
+      const errorMessage = error.message || "ニュースの取得に失敗しました。";
       toast({
         title: "エラー",
         description: errorMessage,
@@ -105,6 +121,22 @@ const AdminPage = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const updatePagination = () => {
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    const paginatedNews = allNews.slice(startIndex, endIndex);
+    setNews(paginatedNews);
+    
+    const total = allNews.length;
+    const totalPages = Math.ceil(total / ITEMS_PER_PAGE);
+    setPagination({
+      page: currentPage,
+      limit: ITEMS_PER_PAGE,
+      total,
+      totalPages
+    });
   };
 
   const handleOpenDialog = (item?: NewsItem) => {
@@ -150,50 +182,60 @@ const AdminPage = () => {
     setSaving(true);
 
     try {
-      const url = editingItem
-        ? `${API_URL}/api/news/${editingItem.id}`
-        : `${API_URL}/api/news`;
+      // Since we're using static JSON, save to localStorage
+      const updatedNews = [...allNews];
       
-      const method = editingItem ? 'PUT' : 'POST';
+      if (editingItem) {
+        // Update existing item
+        const index = updatedNews.findIndex(item => item.id === editingItem.id);
+        if (index !== -1) {
+          updatedNews[index] = {
+            ...editingItem,
+            date: formData.date,
+            performance_report: formData.performanceReport,
+            retirement_status: formData.retirementStatus,
+            details: formData.details,
+            attachments: formData.attachments || null,
+            other: formData.other || null,
+            updated_at: new Date().toISOString()
+          };
+        }
+      } else {
+        // Add new item
+        const newId = Math.max(...updatedNews.map(n => n.id), 0) + 1;
+        updatedNews.unshift({
+          id: newId,
+          date: formData.date,
+          performance_report: formData.performanceReport,
+          retirement_status: formData.retirementStatus,
+          details: formData.details,
+          attachments: formData.attachments || null,
+          other: formData.other || null,
+          created_at: new Date().toISOString(),
+          updated_at: null
+        });
+      }
 
-      const response = await fetch(url, {
-        method,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+      // Sort by date descending
+      const sorted = updatedNews.sort((a, b) => {
+        const dateA = a.date.replace(/\./g, '');
+        const dateB = b.date.replace(/\./g, '');
+        return dateB.localeCompare(dateA);
       });
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        let errorMessage = `HTTP ${response.status}: ${response.statusText}`;
-        try {
-          const errorData = JSON.parse(errorText);
-          errorMessage = errorData.error || errorData.message || errorMessage;
-          if (errorData.errors && Array.isArray(errorData.errors)) {
-            errorMessage = errorData.errors.map((e: any) => e.msg || e.message).join(', ');
-          }
-        } catch {
-          errorMessage = errorText || errorMessage;
-        }
-        throw new Error(errorMessage);
-      }
+      // Save to localStorage
+      localStorage.setItem('news-data', JSON.stringify(sorted));
+      setAllNews(sorted);
+      updatePagination();
 
-      const data = await response.json();
-
-      if (data.success) {
-        toast({
-          title: "成功",
-          description: editingItem ? "ニュースを更新しました" : "ニュースを追加しました",
-        });
-        handleCloseDialog();
-        fetchNews(currentPage);
-      } else {
-        throw new Error(data.error || data.message || 'Failed to save');
-      }
+      toast({
+        title: "成功",
+        description: editingItem ? "ニュースを更新しました（ローカルストレージに保存）" : "ニュースを追加しました（ローカルストレージに保存）",
+      });
+      handleCloseDialog();
     } catch (error: any) {
       console.error('Error saving news:', error);
-      const errorMessage = error.message || "保存に失敗しました。サーバーが起動しているか確認してください。";
+      const errorMessage = error.message || "保存に失敗しました。";
       toast({
         title: "エラー",
         description: errorMessage,
@@ -208,38 +250,30 @@ const AdminPage = () => {
     if (!deleteId) return;
 
     try {
-      const response = await fetch(`${API_URL}/api/news/${deleteId}`, {
-        method: 'DELETE',
+      // Remove from array
+      const updatedNews = allNews.filter(item => item.id !== deleteId);
+      
+      // Sort by date descending
+      const sorted = updatedNews.sort((a, b) => {
+        const dateA = a.date.replace(/\./g, '');
+        const dateB = b.date.replace(/\./g, '');
+        return dateB.localeCompare(dateA);
       });
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        let errorMessage = `HTTP ${response.status}: ${response.statusText}`;
-        try {
-          const errorData = JSON.parse(errorText);
-          errorMessage = errorData.error || errorData.message || errorMessage;
-        } catch {
-          errorMessage = errorText || errorMessage;
-        }
-        throw new Error(errorMessage);
-      }
+      // Save to localStorage
+      localStorage.setItem('news-data', JSON.stringify(sorted));
+      setAllNews(sorted);
+      updatePagination();
 
-      const data = await response.json();
-
-      if (data.success) {
-        toast({
-          title: "成功",
-          description: "ニュースを削除しました",
-        });
-        setIsDeleteDialogOpen(false);
-        setDeleteId(null);
-        fetchNews(currentPage);
-      } else {
-        throw new Error(data.error || data.message || 'Failed to delete');
-      }
+      toast({
+        title: "成功",
+        description: "ニュースを削除しました（ローカルストレージから削除）",
+      });
+      setIsDeleteDialogOpen(false);
+      setDeleteId(null);
     } catch (error: any) {
       console.error('Error deleting news:', error);
-      const errorMessage = error.message || "削除に失敗しました。サーバーが起動しているか確認してください。";
+      const errorMessage = error.message || "削除に失敗しました。";
       toast({
         title: "エラー",
         description: errorMessage,
@@ -389,7 +423,7 @@ const AdminPage = () => {
             ) : (
               <>
                 {/* Desktop Table View */}
-                <div className="hidden md:block bg-card border border-border rounded-lg overflow-hidden">
+                <div className="hidden md:block bg-card border border-border rounded overflow-hidden">
                   <div className="overflow-x-auto">
                     <table className="w-full">
                       <thead className="bg-gray-50 border-b border-border">
@@ -433,39 +467,45 @@ const AdminPage = () => {
                   </div>
                 </div>
 
-                {/* Mobile Card View */}
-                <div className="md:hidden space-y-3">
-                  {news.map((item) => (
-                    <div
-                      key={item.id}
-                      className="bg-card border border-border rounded-lg p-3 space-y-2"
-                    >
-                      <div className="flex items-start justify-between gap-2">
-                        <div className="flex-1 min-w-0">
-                          <div className="text-xs font-semibold text-gray-700 mb-1">{item.date}</div>
-                          <div className="text-xs text-gray-600 break-words">{item.performance_report}</div>
-                        </div>
-                        <div className="flex gap-1.5 flex-shrink-0">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="h-7 w-7 p-0"
-                            onClick={() => handleOpenDialog(item)}
-                          >
-                            <Edit className="w-3.5 h-3.5" />
-                          </Button>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="h-7 w-7 p-0"
-                            onClick={() => handleOpenDeleteDialog(item.id)}
-                          >
-                            <Trash2 className="w-3.5 h-3.5 text-red-600" />
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+                {/* Mobile Table View - Horizontal Layout */}
+                <div className="md:hidden bg-card border border-border rounded overflow-hidden">
+                  <table className="w-full text-[10px]">
+                    <thead className="bg-gray-50 border-b border-border">
+                      <tr>
+                        <th className="px-2 py-1.5 text-left font-semibold text-gray-700 w-[25%]">日付</th>
+                        <th className="px-2 py-1.5 text-left font-semibold text-gray-700 w-[55%]">実績報告</th>
+                        <th className="px-2 py-1.5 text-left font-semibold text-gray-700 w-[20%]">操作</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border">
+                      {news.map((item) => (
+                        <tr key={item.id} className="hover:bg-gray-50">
+                          <td className="px-2 py-1.5 text-gray-900 whitespace-nowrap">{item.date}</td>
+                          <td className="px-2 py-1.5 text-gray-700 break-words leading-tight" style={{ wordBreak: 'break-word' }}>{item.performance_report}</td>
+                          <td className="px-2 py-1.5">
+                            <div className="flex gap-1 justify-start">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="h-6 w-6 p-0"
+                                onClick={() => handleOpenDialog(item)}
+                              >
+                                <Edit className="w-3 h-3" />
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="h-6 w-6 p-0"
+                                onClick={() => handleOpenDeleteDialog(item.id)}
+                              >
+                                <Trash2 className="w-3 h-3 text-red-600" />
+                              </Button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
 
                 {/* Pagination */}

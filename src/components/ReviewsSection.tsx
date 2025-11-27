@@ -46,7 +46,7 @@ const ReviewsSection = () => {
   ];
 
   return (
-    <section id="reviews" className="reviews-section py-10 md:py-14 bg-gray-50 relative">
+    <section id="reviews" className="reviews-section py-6 md:py-10 bg-gray-50 relative">
       <div className="reviews-section__background" style={{ backgroundImage: `url(${reviewsBackground})` }} aria-hidden="true"></div>
       <div className="container mx-auto px-4 relative z-10">
         <h2 className="section-title text-3xl md:text-4xl font-bold text-center mb-4">
@@ -60,7 +60,7 @@ const ReviewsSection = () => {
           {reviews.map((review, index) => (
             <div
               key={index}
-              className="bg-background rounded-lg p-6 border border-border hover:shadow-lg transition-shadow"
+              className="bg-background rounded p-6 border border-border md:hover:shadow-lg transition-all mobile-card-hover"
             >
               <div className="flex items-center gap-3 mb-4">
                 <img

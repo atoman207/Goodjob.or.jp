@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Newspaper, ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
 
 interface NewsItem {
   id: number;
@@ -9,9 +8,9 @@ interface NewsItem {
   performance_report: string;
   retirement_status: string;
   details: string;
+  attachments?: string | null;
+  other?: string | null;
 }
-
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 const NewsSection = () => {
   const [news, setNews] = useState<NewsItem[]>([]);
@@ -20,11 +19,24 @@ const NewsSection = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch(`${API_URL}/api/news/latest?limit=5`);
-        const data = await response.json();
-        if (data.success) {
-          setNews(data.data);
+        // First try localStorage (if admin has made changes)
+        const localData = localStorage.getItem('news-data');
+        let data: NewsItem[];
+        
+        if (localData) {
+          data = JSON.parse(localData);
+        } else {
+          const response = await fetch('/news-data.json');
+          data = await response.json();
         }
+        
+        // Sort by date descending and get latest 5
+        const sorted = data.sort((a, b) => {
+          const dateA = a.date.replace(/\./g, '');
+          const dateB = b.date.replace(/\./g, '');
+          return dateB.localeCompare(dateA);
+        });
+        setNews(sorted.slice(0, 5));
       } catch (error) {
         console.error('Error fetching news:', error);
       } finally {
@@ -45,7 +57,7 @@ const NewsSection = () => {
   };
 
   return (
-    <section className="news-section py-10 md:py-14 bg-gray-50">
+    <section className="news-section py-6 md:py-10 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="mb-6 md:mb-8 text-center">
           <div className="inline-flex items-center gap-2 mb-3 md:mb-4">
@@ -68,10 +80,12 @@ const NewsSection = () => {
         ) : (
           <div className="space-y-4 max-w-4xl mx-auto">
             {news.map((item, index) => (
-              <Link
+              <a
                 key={item.id}
-                to={`/news/${item.id}`}
-                className="block bg-white rounded-lg border border-gray-200 p-4 md:p-6 shadow-sm hover:shadow-md transition-all hover:border-primary/50 cursor-pointer"
+                href={`/news/${item.id}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block bg-white rounded border border-gray-200 p-4 md:p-6 shadow-sm md:hover:shadow-md transition-all md:hover:border-primary/50 cursor-pointer mobile-card-hover"
               >
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-3">
                   <div className="flex-1 min-w-0">
@@ -94,7 +108,7 @@ const NewsSection = () => {
                     </div>
                   </div>
                 </div>
-              </Link>
+              </a>
             ))}
           </div>
         )}
@@ -106,9 +120,9 @@ const NewsSection = () => {
             className="gap-2"
             asChild
           >
-            <Link to="/news">
+            <a href="/news" target="_blank" rel="noopener noreferrer">
               詳細を見る <ArrowRight className="w-4 h-4" />
-            </Link>
+            </a>
           </Button>
         </div>
       </div>

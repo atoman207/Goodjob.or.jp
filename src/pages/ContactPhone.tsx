@@ -10,7 +10,7 @@ const ContactPhone = () => {
       <main className="flex-1 pt-20 md:pt-24">
         <section className="py-10 md:py-16">
           <div className="container mx-auto px-4">
-            <div className="max-w-2xl mx-auto bg-card border border-border rounded-2xl p-6 md:p-8 shadow-sm">
+            <div className="max-w-2xl mx-auto bg-card border border-border rounded p-6 md:p-8 shadow-sm">
               <h1 className="text-2xl md:text-3xl font-bold mb-2 text-center">電話で相談</h1>
               <p className="text-muted-foreground text-center mb-6">
                 平日 9:00〜21:00（土日祝も対応）。お急ぎの方はこちらからお電話ください。

@@ -1,7 +1,6 @@
 import { useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Newspaper } from "lucide-react";
-import { Link } from "react-router-dom";
 
 // Import all media images
 import media1 from "@/assets/media image/media (1).png";
@@ -124,9 +123,9 @@ const MediaSection = () => {
             className="media-section__cta"
             asChild
           >
-            <Link to="/media/inquiry">
+            <a href="/media/inquiry" target="_blank" rel="noopener noreferrer">
               取材依頼はこちら →
-            </Link>
+            </a>
           </Button>
         </div>
 

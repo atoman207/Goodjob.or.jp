@@ -15,6 +15,9 @@ import MediaInquiry from "./pages/MediaInquiry";
 import NewsDetail from "./pages/NewsDetail";
 import NewsItemDetail from "./pages/NewsItemDetail";
 import AdminPage from "./pages/AdminPage";
+import ServiceRetirementContact from "./pages/ServiceRetirementContact";
+import ServiceNegotiation from "./pages/ServiceNegotiation";
+import ServiceJobChange from "./pages/ServiceJobChange";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +37,9 @@ const App = () => (
             <Route path="/media/inquiry" element={<MediaInquiry />} />
             <Route path="/news" element={<NewsDetail />} />
             <Route path="/news/:id" element={<NewsItemDetail />} />
+            <Route path="/service/retirement-contact" element={<ServiceRetirementContact />} />
+            <Route path="/service/negotiation" element={<ServiceNegotiation />} />
+            <Route path="/service/job-change" element={<ServiceJobChange />} />
             <Route path="/addinfo" element={<AdminPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

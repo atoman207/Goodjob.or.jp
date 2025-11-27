@@ -191,7 +191,7 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
-            <div className="mt-6 p-4 bg-white/5 rounded-lg border border-white/10 backdrop-blur-sm">
+            <div className="mt-6 p-4 bg-white/5 rounded border border-white/10 backdrop-blur-sm">
               <p className="text-xs text-gray-400 leading-relaxed">
                 〒103-0022
                 <br />
