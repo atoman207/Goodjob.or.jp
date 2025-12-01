@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Mail } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import desktopLogo from "@/assets/logo.jpg";
@@ -73,39 +73,41 @@ const Header = () => {
 
           </div>
 
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8">
             <button
               onClick={() => handleNavigation("services")}
-              className="text-foreground hover:text-primary transition-colors"
+              className="text-foreground hover:text-[#5C4033] transition-colors text-sm lg:text-base font-medium py-2 px-1"
             >
               サービス内容
             </button>
             <button
               onClick={() => handleNavigation("pricing")}
-              className="text-foreground hover:text-primary transition-colors"
+              className="text-foreground hover:text-[#5C4033] transition-colors text-sm lg:text-base font-medium py-2 px-1"
             >
               料金
             </button>
             <button
               onClick={() => handleNavigation("process")}
-              className="text-foreground hover:text-primary transition-colors"
+              className="text-foreground hover:text-[#5C4033] transition-colors text-sm lg:text-base font-medium py-2 px-1"
             >
               手順
             </button>
             <button
               onClick={() => handleNavigation("reviews")}
-              className="text-foreground hover:text-primary transition-colors"
+              className="text-foreground hover:text-[#5C4033] transition-colors text-sm lg:text-base font-medium py-2 px-1"
             >
               利用者レビュー
             </button>
-            <Button onClick={() => handleNavigation("contact")}>
+            <Button onClick={() => handleNavigation("contact")} className="flex items-center gap-2">
+              <Mail className="w-4 h-4 text-white" />
               相談する
             </Button>
           </nav>
 
           <button
-            className="md:hidden text-foreground"
+            className="md:hidden text-foreground hover:text-[#0f172a] transition-all duration-200 hover:scale-110 p-2 rounded"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="メニューを開く"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -113,35 +115,36 @@ const Header = () => {
 
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-border">
-            <nav className="flex flex-col gap-4">
+            <nav className="flex flex-col gap-3">
               <button
                 onClick={() => handleNavigation("services")}
-                className="text-left text-foreground hover:text-primary transition-colors py-2"
+                className="text-left text-foreground hover:text-[#5C4033] transition-colors py-2.5 px-2 text-base font-medium"
               >
                 サービス内容
               </button>
               <button
                 onClick={() => handleNavigation("pricing")}
-                className="text-left text-foreground hover:text-primary transition-colors py-2"
+                className="text-left text-foreground hover:text-[#5C4033] transition-colors py-2.5 px-2 text-base font-medium"
               >
                 料金
               </button>
               <button
                 onClick={() => handleNavigation("process")}
-                className="text-left text-foreground hover:text-primary transition-colors py-2"
+                className="text-left text-foreground hover:text-[#5C4033] transition-colors py-2.5 px-2 text-base font-medium"
               >
                 手順
               </button>
               <button
                 onClick={() => handleNavigation("reviews")}
-                className="text-left text-foreground hover:text-primary transition-colors py-2"
+                className="text-left text-foreground hover:text-[#5C4033] transition-colors py-2.5 px-2 text-base font-medium"
               >
                 利用者レビュー
               </button>
               <Button
                 onClick={() => handleNavigation("contact")}
-                className="w-full"
+                className="w-full flex items-center justify-center gap-2 mt-1"
               >
+                <Mail className="w-4 h-4 text-white" />
                 相談する
               </Button>
             </nav>

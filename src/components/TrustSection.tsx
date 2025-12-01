@@ -1,14 +1,5 @@
 import { useState, useEffect } from "react";
 import { Shield, Award, Users } from "lucide-react";
-import {
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from "@mui/material";
 import CTAButtons from "@/components/CTAButtons";
 import trustImage from "@/assets/2section.png";
 // Import icon images
@@ -25,70 +16,6 @@ import strength6Image from "@/assets/ava6.jpg";
 import strength7Image from "@/assets/ava7.jpg";
 import strength8Image from "@/assets/ava8.jpg";
 import strength9Image from "@/assets/ava9.jpg";
-
-const comparisonColumns = [
-  { key: "jobs", label: "東京中央労働組合と他社", accent: "comparison-col comparison-col--jobs" },
-  { key: "general", label: "一般の退職代行", accent: "comparison-col comparison-col--general" },
-  { key: "laborUnion", label: "退職代行のための労働組合", accent: "comparison-col comparison-col--labor" },
-  { key: "lawyer", label: "弁護士の退職代行", accent: "comparison-col comparison-col--lawyer" },
-] as const;
-
-type ColumnKey = (typeof comparisonColumns)[number]["key"];
-
-const comparisonRows: { label: string; values: Record<ColumnKey, string> }[] = [
-  {
-    label: "会社への代行連絡",
-    values: {
-      jobs: "〇",
-      general: "〇",
-      laborUnion: "〇",
-      lawyer: "〇",
-    },
-  },
-  {
-    label: "退職手続きサポート",
-    values: {
-      jobs: "〇",
-      general: "〇",
-      laborUnion: "〇",
-      lawyer: "〇",
-    },
-  },
-  {
-    label: "会社との交渉",
-    values: {
-      jobs: "〇",
-      general: "✕",
-      laborUnion: "△",
-      lawyer: "〇",
-    },
-  },
-  {
-    label: "裁判での代理人",
-    values: {
-      jobs: "✕",
-      general: "✕",
-      laborUnion: "✕",
-      lawyer: "〇",
-    },
-  },
-  {
-    label: "依頼費用の相場",
-    values: {
-      jobs: "22,000円 + 2,000円",
-      general: "20,000円〜30,000円",
-      laborUnion: "25,000円〜30,000円",
-      lawyer: "50,000円〜成果報酬",
-    },
-  },
-];
-
-const columnColorMap: Record<ColumnKey, { header: string; body: string }> = {
-  jobs: { header: "#df9222", body: "#fff7e6" },
-  general: { header: "#f3dfb7", body: "#fffaf1" },
-  laborUnion: { header: "#f8e8c9", body: "#fffaf1" },
-  lawyer: { header: "#fff1d6", body: "#fffaf1" },
-};
 
 const highlightCards = [
   {
@@ -247,94 +174,6 @@ const TrustSection = () => {
               />
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="comparison-section py-10 md:py-14 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="comparison-header">
-            <p className="comparison-kicker trust-section__title section-title">
-            東京中央労働組合と他社との比較
-            </p>
-          </div>
-
-          <TableContainer
-            component={Paper}
-            sx={{
-              borderRadius: 3,
-              boxShadow: "0 18px 45px rgba(15, 23, 42, 0.08)",
-            }}
-          >
-            <Table
-              sx={{
-                minWidth: 700,
-                "& .MuiTableCell-root": {
-                  fontFamily: '"Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif',
-                  fontSize: { xs: "0.75rem", md: "0.95rem" },
-                },
-              }}
-            >
-              <TableHead>
-                <TableRow>
-                  <TableCell
-                    sx={{
-                      bgcolor: "#dfe7f3",
-                      fontWeight: 700,
-                      minWidth: "140px",
-                    }}
-                  />
-                  {comparisonColumns.map((column) => (
-                    <TableCell
-                      key={column.key}
-                      align="center"
-                      sx={{
-                        fontWeight: 700,
-                        bgcolor: columnColorMap[column.key].header,
-                      }}
-                    >
-                      {column.label}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {comparisonRows.map((row, rowIndex) => (
-                  <TableRow
-                    key={row.label}
-                    sx={{
-                      "&:nth-of-type(even)": { backgroundColor: "#f9fafc" },
-                    }}
-                  >
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      sx={{
-                        fontWeight: 600,
-                        bgcolor: "#edf2fb",
-                      }}
-                    >
-                      {row.label}
-                    </TableCell>
-                    {comparisonColumns.map((column) => (
-                      <TableCell
-                        key={`${row.label}-${column.key}`}
-                        align="center"
-                        sx={{
-                          bgcolor: columnColorMap[column.key].body,
-                          fontWeight:
-                            rowIndex === comparisonRows.length - 1 ? 600 : 500,
-                          whiteSpace: "nowrap",
-                        }}
-                      >
-                        {row.values[column.key]}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <p className="comparison-note">※ 依頼費用の相場は当社調べ。</p>
         </div>
       </section>
 
