@@ -128,7 +128,10 @@ const MediaSection = () => {
             </a>
           </Button>
         </div>
+      </div>
 
+      {/* Full-bleed media strip without causing horizontal scroll */}
+      <div className="w-[99vw] overflow-hidden">
         <div className="media-grid">
           <div className="media-row media-row--slow-left">
             <div className="media-row__mask" aria-hidden="true" />

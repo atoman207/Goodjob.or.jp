@@ -59,7 +59,7 @@ const ContactSection = () => {
         position: 'relative',
         width: '100%',
         bgcolor: '#ffffff',
-        py: { xs: 4, md: 6 },
+        py: { xs: 5, md: 7 },
       }}
     >
       <Container>

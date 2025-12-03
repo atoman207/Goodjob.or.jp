@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import CTAButtons from "@/components/CTAButtons";
 import { ArrowLeft } from "lucide-react";
 import { FaBalanceScaleLeft, FaPeopleCarry } from "react-icons/fa";
 
@@ -143,14 +144,7 @@ const ServiceNegotiation = () => {
                 <p className="text-sm md:text-base text-gray-600 mb-4">
                   まずは無料相談でお気軽にお問い合わせください
                 </p>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Button asChild className="flex-1">
-                    <a href="/contact/line" target="_blank" rel="noopener noreferrer">LINEで相談</a>
-                  </Button>
-                  <Button asChild variant="outline" className="flex-1">
-                    <a href="/contact/phone" target="_blank" rel="noopener noreferrer">電話で相談</a>
-                  </Button>
-                </div>
+                <CTAButtons direction={{ xs: "column", sm: "row" }} spacing={{ xs: 2, sm: 3 }} />
               </div>
             </article>
           </div>

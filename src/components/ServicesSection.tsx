@@ -30,7 +30,7 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section id="services" className="py-6 md:py-10 bg-background">
+    <section id="services" className="py-10 md:py-14 bg-background">
       <div className="container mx-auto px-4">
         <h2 className="section-title text-3xl md:text-4xl font-bold text-center mb-4">
           サービス内容

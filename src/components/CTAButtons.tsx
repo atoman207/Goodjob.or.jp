@@ -60,9 +60,17 @@ const CTAButtons = ({
         minHeight: { xs: '40px', md: '48px' },
         bgcolor: '#22c55e',
         color: '#ffffff',
-        boxShadow: '0 4px 12px rgba(34, 197, 94, 0.3)',
+        boxShadow: '0 6px 16px rgba(34, 197, 94, 0.35)',
+        transform: 'translateY(0)',
+        transition: 'transform 150ms ease-out, box-shadow 150ms ease-out, background-color 150ms ease-out',
         '&:hover': {
           bgcolor: '#16a34a',
+          boxShadow: '0 10px 22px rgba(34, 197, 94, 0.45)',
+          transform: 'translateY(-2px)',
+        },
+        '&:active': {
+          boxShadow: '0 3px 10px rgba(34, 197, 94, 0.35)',
+          transform: 'translateY(0)',
         },
         ...lineButtonSx,
       }}
@@ -87,9 +95,17 @@ const CTAButtons = ({
         minHeight: { xs: '40px', md: '48px' },
         bgcolor: '#6b7280',
         color: '#ffffff',
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+        boxShadow: '0 6px 16px rgba(0, 0, 0, 0.22)',
+        transform: 'translateY(0)',
+        transition: 'transform 150ms ease-out, box-shadow 150ms ease-out, background-color 150ms ease-out',
         '&:hover': {
           bgcolor: '#4b5563',
+          boxShadow: '0 10px 22px rgba(0, 0, 0, 0.28)',
+          transform: 'translateY(-2px)',
+        },
+        '&:active': {
+          boxShadow: '0 3px 10px rgba(0, 0, 0, 0.22)',
+          transform: 'translateY(0)',
         },
         ...phoneButtonSx,
       }}

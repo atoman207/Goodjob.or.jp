@@ -57,7 +57,7 @@ const NewsSection = () => {
   };
 
   return (
-    <section className="news-section py-6 md:py-10 bg-gray-50">
+    <section className="news-section py-10 md:py-14 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="mb-6 md:mb-8 text-center">
           <div className="inline-flex items-center gap-2 mb-3 md:mb-4">
@@ -117,11 +117,11 @@ const NewsSection = () => {
           <Button
             variant="outline"
             size="lg"
-            className="gap-2"
+            className="gap-3 px-8 py-3 text-sm md:text-base bg-[#001f3f] text-white hover:text-white rounded-full hover:bg-[#001533]"
             asChild
           >
             <a href="/news" target="_blank" rel="noopener noreferrer">
-              詳細を見る <ArrowRight className="w-4 h-4" />
+              詳細を見る <ArrowRight className="w-4 h-4 ml-1" />
             </a>
           </Button>
         </div>

@@ -25,7 +25,7 @@ const guardianDescription = [
 const WorryandIntroduction = () => {
   return (
     <>
-      <section id="worry" className="worry-section py-8 md:py-10 bg-white">
+      <section id="worry" className="worry-section py-10 md:py-14 bg-white">
         <div className="container mx-auto px-4">
           <div className="worry-section__wrapper">
             {/* Headline and Image Row */}
@@ -72,7 +72,7 @@ const WorryandIntroduction = () => {
         </div>
       </section>
 
-      <section className="guardian-section py-0 md:py-0 bg-gray-50">
+      <section className="guardian-section py-10 md:py-14 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="guardian-section__wrapper">
             {/* Upper Section: Title centered, Image in upper right */}

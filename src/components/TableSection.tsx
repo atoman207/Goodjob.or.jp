@@ -107,7 +107,7 @@ const TableSection = () => {
         <TableContainer
           component={Paper}
           sx={{
-            borderRadius: 3,
+            borderRadius: 1,
             boxShadow: "0 18px 45px rgba(15, 23, 42, 0.08)",
             overflowX: "auto",
           }}
@@ -173,9 +173,11 @@ const TableSection = () => {
                   <TableCell
                     component="th"
                     scope="row"
+                    align="center"
                     sx={{
                       fontWeight: 600,
                       bgcolor: "#edf2fb",
+                      textAlign: "center",
                     }}
                   >
                     {row.label}
@@ -196,7 +198,21 @@ const TableSection = () => {
                         whiteSpace: { xs: "normal", md: "nowrap" },
                       }}
                     >
-                      {row.values[column.key]}
+                      {row.values[column.key] === "〇" ? (
+                        <span style={{ color: "#22c55e" }}>
+                          {row.values[column.key]}
+                        </span>
+                      ) : row.values[column.key] === "△" ? (
+                        <span style={{ color: "#eab308" }}>
+                          {row.values[column.key]}
+                        </span>
+                      ) : row.values[column.key] === "×" ? (
+                        <span style={{ color: "#ef4444" }}>
+                          {row.values[column.key]}
+                        </span>
+                      ) : (
+                        row.values[column.key]
+                      )}
                     </TableCell>
                   ))}
                 </TableRow>

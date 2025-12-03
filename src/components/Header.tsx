@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Mail } from "lucide-react";
+import { Menu, X, Mail, Scale } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import desktopLogo from "@/assets/logo.jpg";
@@ -75,26 +75,26 @@ const Header = () => {
 
           <nav className="hidden md:flex items-center gap-6 lg:gap-8">
             <button
-              onClick={() => handleNavigation("services")}
-              className="text-foreground hover:text-[#5C4033] transition-colors text-sm lg:text-base font-medium py-2 px-1"
+              onClick={() => handleNavigation("services")} 
+              className="text-foreground hover:text-[#e2aa11] transition-colors md:transition-transform md:hover:scale-[1.1] md:hover:font-bold text-sm lg:text-base font-medium py-2 px-1"
             >
               サービス内容
             </button>
             <button
               onClick={() => handleNavigation("pricing")}
-              className="text-foreground hover:text-[#5C4033] transition-colors text-sm lg:text-base font-medium py-2 px-1"
+              className="text-foreground hover:text-[#e2aa11] transition-colors md:transition-transform md:hover:scale-[1.1] md:hover:font-bold text-sm lg:text-base font-medium py-2 px-1"
             >
               料金
             </button>
             <button
               onClick={() => handleNavigation("process")}
-              className="text-foreground hover:text-[#5C4033] transition-colors text-sm lg:text-base font-medium py-2 px-1"
+              className="text-foreground hover:text-[#e2aa11] transition-colors md:transition-transform md:hover:scale-[1.1] md:hover:font-bold text-sm lg:text-base font-medium py-2 px-1"
             >
               手順
             </button>
             <button
               onClick={() => handleNavigation("reviews")}
-              className="text-foreground hover:text-[#5C4033] transition-colors text-sm lg:text-base font-medium py-2 px-1"
+              className="text-foreground hover:text-[#e2aa11] transition-colors md:transition-transform md:hover:scale-[1.1] md:hover:font-bold text-sm lg:text-base font-medium py-2 px-1"
             >
               利用者レビュー
             </button>
@@ -118,25 +118,25 @@ const Header = () => {
             <nav className="flex flex-col gap-3">
               <button
                 onClick={() => handleNavigation("services")}
-                className="text-left text-foreground hover:text-[#5C4033] transition-colors py-2.5 px-2 text-base font-medium"
+                className="text-left text-foreground hover:text-[#e2aa11] transition-colors py-2.5 px-2 text-base font-medium"
               >
                 サービス内容
               </button>
               <button
                 onClick={() => handleNavigation("pricing")}
-                className="text-left text-foreground hover:text-[#5C4033] transition-colors py-2.5 px-2 text-base font-medium"
+                className="text-left text-foreground hover:text-[#e2aa11] transition-colors py-2.5 px-2 text-base font-medium"
               >
                 料金
               </button>
               <button
                 onClick={() => handleNavigation("process")}
-                className="text-left text-foreground hover:text-[#5C4033] transition-colors py-2.5 px-2 text-base font-medium"
+                className="text-left text-foreground hover:text-[#e2aa11] transition-colors py-2.5 px-2 text-base font-medium"
               >
                 手順
               </button>
               <button
                 onClick={() => handleNavigation("reviews")}
-                className="text-left text-foreground hover:text-[#5C4033] transition-colors py-2.5 px-2 text-base font-medium"
+                className="text-left text-foreground hover:text-[#e2aa11] transition-colors py-2.5 px-2 text-base font-medium"
               >
                 利用者レビュー
               </button>

@@ -5,6 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import qaImage from "@/assets/QA.png";
+import questionMark from "@/assets/question_mark.png";
 
 const FAQSection = () => {
   const faqs = [
@@ -70,11 +71,24 @@ const FAQSection = () => {
         </p>
 
         <div className="max-w-3xl mx-auto">
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion
+            type="multiple"
+            defaultValue={faqs.map((_, index) => `item-${index}`)}
+            className="w-full"
+          >
             {faqs.map((faq, index) => (
               <AccordionItem key={index} value={`item-${index}`}>
                 <AccordionTrigger className="text-left">
-                  {faq.question}
+                  <div className="flex items-center gap-3">
+                    <img
+                      src={questionMark}
+                      alt="質問アイコン"
+                      className="w-6 h-6 md:w-7 md:h-7 object-contain flex-shrink-0"
+                    />
+                    <span className="text-base md:text-lg font-semibold text-gray-900">
+                      {faq.question}
+                    </span>
+                  </div>
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground">
                   {faq.answer}
