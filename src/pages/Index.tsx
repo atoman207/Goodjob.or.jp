@@ -9,7 +9,6 @@ import ProcessSection from "@/components/ProcessSection";
 import ReviewsSection from "@/components/ReviewsSection";
 import FAQSection from "@/components/FAQSection";
 import ContactSection from "@/components/ContactSection";
-import MapSection from "@/components/MapSection";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import ChatbotWidget from "@/components/ChatbotWidget";
@@ -34,7 +33,6 @@ const Index = () => {
         <FAQSection />
         <ContactSection />
       </main>
-      <MapSection />
       <Footer />
       <FloatingCTA />
       <ChatbotWidget />
